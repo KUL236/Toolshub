@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url><loc>https://softwaretoolss.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://softwaretoolss.com/#games</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#ai-tools</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#developer</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#finance</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#fun-viral</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#health</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#image-tools</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#pdf-tools</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://softwaretoolss.com/#student</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- AI Tools (25) -->
+  <url><loc>https://softwaretoolss.com/#tool/ai-resume-analyzer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-resume-builder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-cover-letter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-linkedin-optimizer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-linkedin-headline</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-interview-coach</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-career-roadmap</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-startup-idea</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-business-plan</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-blog-writer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-article-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-translator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-summarizer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-rewriter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-caption-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-hashtag-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-story-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-quiz-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-mcq-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-legal-assistant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-contract-simplifier</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-email-writer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-cold-email</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-product-desc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ai-youtube-script</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Developer Tools (20) -->
+  <url><loc>https://softwaretoolss.com/#tool/json-validator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/xml-formatter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/sql-formatter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/regex-tester</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/jwt-decoder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/uuid-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/base64-enc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/base64-dec</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/password-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/password-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/cron-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/markdown-preview</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/hash-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/url-encoder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/color-converter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/api-tester</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/html-minifier</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/css-minifier</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/js-minifier</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/diff-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Finance Tools (12) -->
+  <url><loc>https://softwaretoolss.com/#tool/emi-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/sip-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/gst-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/income-tax</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/loan-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/salary-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/profit-loss</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/discount-calc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/retirement-planner</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/currency-converter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/fd-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/percent-calc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Fun & Viral Tools (12) -->
+  <url><loc>https://softwaretoolss.com/#tool/love-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/friendship-calc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/birthday-countdown</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/roast-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/fortune-wheel</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/personality-test</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/random-challenge</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/truth-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/random-num-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/dice-roller</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/wheel-spinner</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/truth-dare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Health Tools (10) -->
+  <url><loc>https://softwaretoolss.com/#tool/bmi-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/calorie-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/water-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/sleep-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/step-tracker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/heart-rate-monitor</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/smartwatch-connect</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/health-dashboard</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/bmi-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ideal-weight</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Image Tools (26) -->
+  <url><loc>https://softwaretoolss.com/#tool/invert-image</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/text-to-image</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/image-translator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/barcode-scanner</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/batch-img-to-text</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/bg-remover</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-compressor</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/png-compressor</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-cropper</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-resizer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-upscaler</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-watermark</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/face-blur</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/meme-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/qr-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/barcode-gen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-to-text</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/color-picker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/png-to-jpg</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/webp-to-jpg</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/jpg-to-webp</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/svg-to-png</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-to-base64</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/img-base64-decode</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/color-palette</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/photo-filters</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- PDF Tools (32) -->
+  <url><loc>https://softwaretoolss.com/#tool/pdf-to-jpg</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-to-png</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/jpg-to-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/png-to-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/merge-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/split-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/compress-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/rotate-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/watermark-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/protect-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/unlock-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-metadata</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-page-numbers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ocr-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-extract-pages</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-to-word</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-reader</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/jpg-to-png</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-to-text</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-to-excel</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-to-csv</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/pdf-to-html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/html-to-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/word-to-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/word-to-jpg</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/word-to-excel</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/jpg-to-word</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/jpg-to-excel</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/excel-to-jpg</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://softwaretoolss.com/#tool/ppt-to-pdf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+</urlset>

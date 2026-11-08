@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="color-scheme" content="dark light">
+
+<!-- Primary SEO -->
+<title>ToolHub 5D — 200+ Free Online Tools | Smart Tools, Games, PDF, Image & More</title>
+<meta name="description" content="ToolHub 5D offers 200+ free online tools: AI Resume Builder, PDF Tools, Image Tools, Games, Health Tools, Developer Tools, Finance Calculators & more. No signup. 100% free.">
+<meta name="keywords" content="free online tools,ai tools,pdf tools,image tools,games,health calculator,emi calculator,bmi calculator,qr code generator,resume builder">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="author" content="ToolHub 5D">
+<link rel="canonical" href="https://softwaretoolss.netlify.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolHub 5D">
+<meta property="og:title" content="ToolHub 5D — 200+ Free Online Tools">
+<meta property="og:description" content="Smart Tools, PDF Tools, Image Tools, Games, Health Dashboard & 200+ free tools. No signup, 100% private.">
+<meta property="og:url" content="https://softwaretoolss.netlify.app/">
+<meta property="og:image" content="https://softwaretoolss.netlify.app/assets/og-image.png">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ToolHub 5D — 200+ Free Online Tools">
+<meta name="twitter:description" content="Smart Tools, PDF, Image, Games & 200+ free tools. No signup needed.">
+<meta name="twitter:image" content="https://softwaretoolss.netlify.app/assets/og-image.png">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ToolHub 5D">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="/js/theme.js?v=8"></script>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://favqjzwxstmbqkazjiqc.supabase.co">
+
+<!-- Fonts are self-hosted: /assets/fonts (declared at the top of css/style.css) -->
+<link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- External libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" onerror="this.onerror=null;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js';s.onerror=function(){var s2=document.createElement('script');s2.src='/js/vendor/qrcode.min.js';document.head.appendChild(s2);};document.head.appendChild(s);"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js" defer></script>
+<!-- PDF.js for PDF reading/extraction tools -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Configure PDF.js worker after it loads
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    } else {
+      window.addEventListener('load', function() {
+        if (window.pdfjsLib) {
+          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Supabase -->
+<script src="/js/vendor/supabase.js" onerror="this.onerror=null;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';document.head.appendChild(s);"></script>
+
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  SUPABASE CONFIG — REPLACE WITH YOUR REAL KEYS
+  ═══════════════════════════════════════════════════════════════════
+  Get these from: Supabase Dashboard → Project Settings → API
+
+    SUPABASE_URL      = "Project URL"   (https://xxxx.supabase.co)
+    SUPABASE_ANON_KEY = "anon public"   (a JWT starting with "eyJ...")
+
+  ⚠️  The key "sb_publishable_..." is NOT a valid anon key — using it
+      causes HTTP 401 "Authentication not configured" on every request.
+
+  For Netlify production:
+    Set SUPABASE_URL and SUPABASE_ANON_KEY in
+    Netlify Dashboard → Site Settings → Environment Variables
+    and remove the hardcoded values below (leave empty strings "").
+  ═══════════════════════════════════════════════════════════════════
+-->
+<script>
+  // Hardcoded Supabase credentials — no Netlify function / env var needed.
+  window.__env = {
+    SUPABASE_URL: 'https://favqjzwxstmbqkazjiqc.supabase.co',
+    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhdnFqend4c3RtYnFrYXpqaXFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0NDI4NjksImV4cCI6MjA5ODAxODg2OX0.-qPSZJZBhHA_7XTByOZJhlzXi27L_OmKMvPz62CqEzc'
+  };
+  (function () {
+    if (typeof initSupabase === 'function') {
+      initSupabase();
+    }
+  })();
+</script>
+
+<!-- Styles -->
+<link rel="stylesheet" href="/css/style.css?v=8">
+<link rel="stylesheet" href="/css/splash.css?v=8">
+<link rel="stylesheet" href="/css/mobile.css?v=8">
+<link rel="stylesheet" href="/css/games-premium.css?v=8">
+<link rel="stylesheet" href="/css/v6-enhancements.css?v=8">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"WebSite","@id":"https://softwaretoolss.netlify.app/#website","url":"https://softwaretoolss.netlify.app/","name":"ToolHub 5D","description":"200+ free online tools for AI, PDF, image, finance, health, games and more","potentialAction":{"@type":"SearchAction","target":"https://softwaretoolss.netlify.app/?q={search_term_string}","query-input":"required name=search_term_string"}},
+  {"@type":"Organization","@id":"https://softwaretoolss.netlify.app/#org","name":"ToolHub 5D","url":"https://softwaretoolss.netlify.app/","logo":{"@type":"ImageObject","url":"https://softwaretoolss.netlify.app/assets/icons/icon-512.png"}},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Are all tools free?","acceptedAnswer":{"@type":"Answer","text":"Yes! Every tool on ToolHub 5D is 100% free."}},
+    {"@type":"Question","name":"Is my data safe?","acceptedAnswer":{"@type":"Answer","text":"All calculations happen in your browser. We never store your personal data without permission."}}
+  ]}
+]}
+</script>
+</head>
+<body>
+
+<!-- ── SPLASH / LOADING SCREEN ─────────────────────────────────────────── -->
+<div id="splash-screen" aria-label="Loading ToolHub 5D" role="status">
+  <div class="splash-stars" aria-hidden="true"></div>
+
+  <div class="splash-orbit" aria-hidden="true">
+    <div class="splash-ring">
+      <div class="splash-icon" style="--angle:0deg;   --icon-color:#a78bfa">📄</div>
+      <div class="splash-icon" style="--angle:45deg;  --icon-color:#818cf8">🤖</div>
+      <div class="splash-icon" style="--angle:90deg;  --icon-color:#06b6d4">🖼️</div>
+      <div class="splash-icon" style="--angle:135deg; --icon-color:#ec4899">⚡</div>
+      <div class="splash-icon" style="--angle:180deg; --icon-color:#3b82f6">📈</div>
+      <div class="splash-icon" style="--angle:225deg; --icon-color:#8b5cf6">🎓</div>
+      <div class="splash-icon" style="--angle:270deg; --icon-color:#ef4444">❤️</div>
+      <div class="splash-icon" style="--angle:315deg; --icon-color:#10b981">🎮</div>
+    </div>
+
+    <div class="splash-center">🛠️</div>
+  </div>
+
+  <div class="diwali-welcome" aria-label="Happy Diwali">
+    <span class="firework firework-left">✦</span>
+    <span class="firework firework-right">✦</span>
+    <span class="diwali-welcome-diya">🪔</span>
+    <strong>Happy Diwali</strong>
+    <span>✨ May your world shine brighter ✨</span>
+  </div>
+
+  <div class="splash-title">ToolHub <span style="color:#38bdf8">5D</span></div>
+  <div class="splash-tagline">200+ Tools. One Clean Workspace.</div>
+  <div class="splash-sub">Convert. Calculate. Generate. Play. Achieve.</div>
+
+  <div class="splash-features" aria-hidden="true">
+    <div class="splash-feature" style="--f-color:#38bdf8"><div class="splash-feature-icon">🚀</div><div class="splash-feature-label">FAST</div></div>
+    <div class="splash-feature" style="--f-color:#818cf8"><div class="splash-feature-icon">🛡️</div><div class="splash-feature-label">SECURE</div></div>
+    <div class="splash-feature" style="--f-color:#c084fc"><div class="splash-feature-icon">∞</div><div class="splash-feature-label">INFINITE</div></div>
+    <div class="splash-feature" style="--f-color:#f59e0b"><div class="splash-feature-icon">⭐</div><div class="splash-feature-label">SMART</div></div>
+  </div>
+
+  <div class="splash-progress-wrap">
+    <div class="splash-loading-text">LOADING TOOLHUB 5D…</div>
+    <div class="splash-progress-track"><div class="splash-progress-fill" id="splash-fill"></div></div>
+    <div class="splash-percent" id="splash-percent">0%</div>
+  </div>
+
+  <div class="splash-powered">Powered by <b>ToolHub 5D</b></div>
+</div>
+<script src="/js/splash.js?v=8"></script>
+<!-- ── END SPLASH SCREEN ───────────────────────────────────────────────── -->
+
+<!-- Particle canvas -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- Ambient orbs -->
+<div class="orb orb-1" aria-hidden="true"></div>
+<div class="orb orb-2" aria-hidden="true"></div>
+<div class="orb orb-3" aria-hidden="true"></div>
+<div class="orb orb-4" aria-hidden="true"></div>
+
+<!-- SIDEBAR -->
+<aside id="sidebar" role="navigation" aria-label="Sidebar navigation">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><defs><linearGradient id="brand-ring" x1="4" y1="4" x2="36" y2="36"><stop stop-color="#38bdf8"/><stop offset=".52" stop-color="#818cf8"/><stop offset="1" stop-color="#ec4899"/></linearGradient><linearGradient id="brand-core" x1="11" y1="10" x2="30" y2="31"><stop stop-color="#a5f3fc"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs><path d="M20 3.5 34.3 11.7v16.6L20 36.5 5.7 28.3V11.7L20 3.5Z" fill="rgba(99,102,241,.12)" stroke="url(#brand-ring)" stroke-width="1.8"/><path d="m20 10 8.6 5v10L20 30l-8.6-5V15l8.6-5Z" fill="url(#brand-core)" fill-opacity=".16" stroke="url(#brand-core)" stroke-width="1.5"/><path d="m20 10 8.6 5-8.6 5-8.6-5 8.6-5Zm0 10v10" stroke="url(#brand-core)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg>
+      </div>
+      <div>
+        <div class="logo-text">ToolHub</div>
+        <div class="logo-badge">5D</div>
+      </div>
+    </div>
+    <button class="sidebar-close" id="sidebar-close-btn" aria-label="Close sidebar">✕</button>
+  </div>
+
+  <div class="sidebar-search">
+    <span class="sidebar-search-icon">🔍</span>
+    <input type="text" id="sidebar-search" placeholder="Search tools..." autocomplete="off">
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">MAIN</div>
+    <button class="sidebar-item active" data-page="home" onclick="navigate('home')">
+      <span class="si-icon">🏠</span><span class="si-label">Home</span>
+    </button>
+    <button class="sidebar-item" data-page="all-tools" onclick="navigate('all-tools')">
+      <span class="si-icon">🛠️</span><span class="si-label">All Tools</span>
+      <span class="si-badge">200+</span>
+    </button>
+
+    <div class="sidebar-section-label">TOOLS</div>
+    <button class="sidebar-item" data-page="ai-tools" onclick="navigate('ai-tools')">
+      <span class="si-icon">🤖</span><span class="si-label">AI Tools</span>
+      <span class="si-badge new">NEW</span>
+    </button>
+    <button class="sidebar-item" data-page="pdf-tools" onclick="navigate('pdf-tools')">
+      <span class="si-icon">📄</span><span class="si-label">PDF Tools</span>
+    </button>
+    <button class="sidebar-item" data-page="image-tools" onclick="navigate('image-tools')">
+      <span class="si-icon">🖼️</span><span class="si-label">Image Tools</span>
+    </button>
+    <button class="sidebar-item" data-page="developer" onclick="navigate('developer')">
+      <span class="si-icon">💻</span><span class="si-label">Developer</span>
+    </button>
+    <button class="sidebar-item" data-page="compilers" onclick="navigate('compilers')">
+      <span class="si-icon">⚡</span><span class="si-label">Compilers</span>
+      <span class="si-badge new">NEW</span>
+    </button>
+    <button class="sidebar-item" data-page="finance" onclick="navigate('finance')">
+      <span class="si-icon">💰</span><span class="si-label">Finance</span>
+    </button>
+    <button class="sidebar-item" data-page="student" onclick="navigate('student')">
+      <span class="si-icon">🎓</span><span class="si-label">Student</span>
+    </button>
+    <button class="sidebar-item" data-page="health" onclick="navigate('health')">
+      <span class="si-icon">❤️</span><span class="si-label">Health</span>
+    </button>
+
+    <div class="sidebar-section-label">ENTERTAINMENT</div>
+    <button class="sidebar-item" data-page="games" onclick="navigate('games')">
+      <span class="si-icon">🎮</span><span class="si-label">Games</span>
+      <span class="si-badge hot">HOT</span>
+    </button>
+    <button class="sidebar-item diwali-nav-item" data-page="diwali" onclick="navigate('diwali')">
+      <span class="si-icon">🪔</span><span class="si-label">Diwali Special</span>
+      <span class="si-badge diwali-badge">SPECIAL</span>
+    </button>
+    <button class="sidebar-item" data-page="fun-viral" onclick="navigate('fun-viral')">
+      <span class="si-icon">🎉</span><span class="si-label">Fun & Viral</span>
+    </button>
+
+    <div class="sidebar-section-label">PERSONAL</div>
+    <button class="sidebar-item" data-page="favorites" onclick="navigate('favorites')">
+      <span class="si-icon">⭐</span><span class="si-label">Favorites</span>
+      <span class="si-count" id="fav-count">0</span>
+    </button>
+    <button class="sidebar-item" data-page="recent" onclick="navigate('recent')">
+      <span class="si-icon">🕐</span><span class="si-label">Recent</span>
+    </button>
+    <button class="sidebar-item" data-page="refer" onclick="navigate('refer')">
+      <span class="si-icon" data-ic="gift"></span><span class="si-label">Refer &amp; Earn</span>
+      <span class="si-badge new">NEW</span>
+    </button>
+    <button class="sidebar-item" data-page="feedback" onclick="navigate('feedback')">
+      <span class="si-icon">💬</span><span class="si-label">Feedback</span>
+    </button>
+    <div class="sidebar-section-label">INFO</div>
+    <button class="sidebar-item" data-page="documentation" onclick="navigate('documentation')">
+      <span class="si-icon">📚</span><span class="si-label">Documentation</span>
+    </button>
+    <button class="sidebar-item" data-page="privacy" onclick="navigate('privacy')">
+      <span class="si-icon">🛡️</span><span class="si-label">Privacy & Policy</span>
+    </button>
+  </nav>
+
+  <div class="sidebar-upgrade">
+    <div class="upgrade-icon">👑</div>
+    <div class="upgrade-text">
+      <div class="upgrade-title">ToolHub Pro</div>
+      <div class="upgrade-desc">No Ads · Unlimited Access · Cloud Sync</div>
+    </div>
+    <button class="upgrade-btn" onclick="showUpgradeModal()">Upgrade</button>
+  </div>
+
+  <div class="sidebar-stats">
+    <div class="stat-row"><span>🛠️ Tools</span><span class="stat-val">200+</span></div>
+    <div class="stat-row"><span>🎮 Games</span><span class="stat-val">20+</span></div>
+    <div class="stat-row"><span>🧠 Smart Tools</span><span class="stat-val">25+</span></div>
+    <div class="stat-row"><span>⚡ Uptime</span><span class="stat-val">99.9%</span></div>
+  </div>
+  <div class="sidebar-dev-wrap">
+    <span class="sd-label">Developed &amp; designed by</span>
+    <a class="sidebar-dev" href="https://www.linkedin.com/in/kuldeep-singh-64403533a" target="_blank" rel="noopener noreferrer" aria-label="Kuldeep Singh on LinkedIn">
+      <span class="sd-name">Kuldeep Singh <span class="sd-in">in</span></span>
+    </a>
+    <a class="sidebar-dev" href="https://www.linkedin.com/in/vidhi-sankhala-57579536b" target="_blank" rel="noopener noreferrer" aria-label="Vidhi Sankhala on LinkedIn">
+      <span class="sd-name">Vidhi Sankhala <span class="sd-in">in</span></span>
+    </a>
+  </div>
+</aside>
+
+<!-- Sidebar overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- TOP NAVBAR -->
+<header id="navbar" role="banner">
+  <div class="navbar-left">
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="nav-logo" href="/" onclick="navigate('home');return false;">
+      <div class="nav-logo-icon">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true"><defs><linearGradient id="nav-brand-ring" x1="4" y1="4" x2="36" y2="36"><stop stop-color="#38bdf8"/><stop offset=".52" stop-color="#818cf8"/><stop offset="1" stop-color="#ec4899"/></linearGradient><linearGradient id="nav-brand-core" x1="11" y1="10" x2="30" y2="31"><stop stop-color="#a5f3fc"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs><path d="M20 3.5 34.3 11.7v16.6L20 36.5 5.7 28.3V11.7L20 3.5Z" fill="rgba(99,102,241,.12)" stroke="url(#nav-brand-ring)" stroke-width="1.8"/><path d="m20 10 8.6 5v10L20 30l-8.6-5V15l8.6-5Z" fill="url(#nav-brand-core)" fill-opacity=".16" stroke="url(#nav-brand-core)" stroke-width="1.5"/><path d="m20 10 8.6 5-8.6 5-8.6-5 8.6-5Zm0 10v10" stroke="url(#nav-brand-core)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg>
+      </div>
+      <span class="nav-logo-text">ToolHub</span>
+      <span class="nav-logo-5d">5D</span>
+    </a>
+  </div>
+
+  <div class="navbar-search-wrap" role="search">
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input type="search" id="search-input" placeholder="Search 200+ tools, categories..." autocomplete="off" aria-label="Search tools">
+      <button class="voice-btn" id="voice-btn" aria-label="Voice search" title="Voice search">🎙️</button>
+      <div id="search-dropdown" class="search-dropdown" role="listbox"></div>
+    </div>
+  </div>
+
+  <div class="navbar-actions">
+    <button class="nav-ai-btn" onclick="navigate('ai-assistant')" aria-label="Smart Assistant">
+      <span>🤖</span> Smart Assistant
+    </button>
+    <div id="nav-auth-btns" class="nav-auth-btns">
+      <button class="nav-login-btn" onclick="showAuthModal('login')" aria-label="Sign In">Sign In</button>
+      <button class="nav-signup-btn" onclick="showAuthModal('signup')" aria-label="Sign Up">Sign Up</button>
+    </div>
+    <button class="nav-icon-btn palette-btn" id="palette-toggle" onclick="toggleThemePanel()" aria-label="Theme and appearance" aria-haspopup="dialog" title="Theme & appearance">🎨</button>
+    <button class="nav-icon-btn notif-btn" id="notif-btn" onclick="toggleNotifications()" aria-label="Notifications">
+      🔔<span class="notif-dot" id="notif-dot"></span>
+    </button>
+    <button class="nav-avatar-btn" id="auth-btn" onclick="toggleAuthMenu()" aria-label="User menu">
+      <div class="avatar-ring" id="avatar-display">👤</div>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE SEARCH BAR (below header, mobile only) -->
+<div id="mobile-search-bar" role="search" aria-label="Mobile search">
+  <div class="search-container" style="position:relative">
+    <span class="search-icon">🔍</span>
+    <input type="search" id="mobile-search-input" placeholder="Search 200+ tools, games..." autocomplete="off" aria-label="Search tools">
+    <button id="mobile-voice-btn" aria-label="Voice search" title="Voice search">🎙️</button>
+    <div id="mobile-search-dropdown" class="search-dropdown" role="listbox"></div>
+  </div>
+</div>
+
+<!-- FLOATING SI ASSISTANT BUTTON (mobile only) -->
+<button id="floating-si-btn" aria-label="Open Smart Assistant" onclick="navigate('ai-assistant')" title="Smart Assistant">🤖</button>
+
+<!-- Auth dropdown -->
+<div id="auth-menu" class="auth-menu" role="menu">
+  <div id="auth-menu-content"></div>
+</div>
+
+<!-- Theme & appearance panel -->
+<aside id="theme-panel" class="theme-panel" aria-label="Theme and appearance" aria-hidden="true">
+  <div class="theme-panel-head">
+    <div><span class="theme-eyebrow">PERSONALIZE</span><h2>Theme & Appearance</h2></div>
+    <button class="theme-panel-close" onclick="toggleThemePanel()" aria-label="Close theme panel">✕</button>
+  </div>
+  <div class="theme-panel-scroll">
+    <section class="theme-panel-section">
+      <div class="theme-section-title"><span>Appearance mode</span><small>Choose how ToolHub looks</small></div>
+      <div class="appearance-modes" role="group" aria-label="Appearance mode">
+        <button data-theme-mode="light" onclick="setAppearanceMode('light')"><span>☀️</span>Light</button>
+        <button data-theme-mode="dark" onclick="setAppearanceMode('dark')"><span>🌙</span>Dark</button>
+        <button data-theme-mode="system" onclick="setAppearanceMode('system')"><span>💻</span>System</button>
+      </div>
+    </section>
+    <section class="theme-panel-section">
+      <div class="theme-section-title"><span>Color themes</span><small>16 curated palettes</small></div>
+      <div id="theme-grid" class="theme-grid"></div>
+    </section>
+    <section class="theme-panel-section custom-theme-section">
+      <div class="theme-section-title"><span>Custom theme</span><small>Build your own visual language</small></div>
+      <div class="custom-color-grid">
+        <label>Primary <input type="color" data-custom-color="primary" value="#3b82f6"></label>
+        <label>Secondary <input type="color" data-custom-color="secondary" value="#6366f1"></label>
+        <label>Accent <input type="color" data-custom-color="accent" value="#06b6d4"></label>
+        <label>Background <input type="color" data-custom-color="background" value="#0a0f18"></label>
+        <label>Surface <input type="color" data-custom-color="surface" value="#111827"></label>
+      </div>
+      <div class="gradient-picker">
+        <span>Gradient style</span>
+        <div id="gradient-options" class="gradient-options"></div>
+      </div>
+      <div id="theme-preview" class="theme-preview" aria-live="polite">
+        <div class="preview-bar"></div><strong>Live preview</strong><span>Cards, buttons and surfaces follow your palette.</span>
+      </div>
+      <div class="custom-theme-actions">
+        <button class="btn-primary-glow" onclick="applyCustomTheme()">Apply custom theme</button>
+        <button class="btn-ghost" onclick="resetTheme()">Reset defaults</button>
+      </div>
+    </section>
+  </div>
+</aside>
+<div id="theme-panel-backdrop" class="theme-panel-backdrop" onclick="toggleThemePanel()"></div>
+
+<!-- Notifications panel -->
+<div id="notif-panel" class="notif-panel">
+  <div class="notif-header">
+    <h3>Notifications</h3>
+    <button onclick="toggleNotifications()">✕</button>
+  </div>
+
+  <div id="notif-list" class="notif-list">
+    <div class="notif-item"><span class="notif-dot-item">🆕</span><div><b>New Smart Tools Added!</b><p>25+ smart tools now available. Try Resume Analyzer!</p></div></div>
+    <div class="notif-item"><span class="notif-dot-item">🎮</span><div><b>Games Update</b><p>17+ games available including Chess & Ludo!</p></div></div>
+    <div class="notif-item"><span class="notif-dot-item">⚡</span><div><b>PDF Tools Upgraded</b><p>New OCR, Compress & Protect PDF tools added.</p></div></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main id="main-content">
+
+  <!-- HOME PAGE -->
+  <section id="page-home" class="page active">
+
+    <!-- HERO -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge">🚀 Modern Tool Platform</div>
+        <h1 class="hero-title">
+          <span class="hero-title-line1">5D Experience.</span>
+          <span class="hero-title-line2">Clean, Fast, Reliable.</span>
+        </h1>
+        <p class="hero-subtitle">Convert, calculate, generate, play and achieve more — all in one smart hub.</p>
+        <div class="hero-cta">
+          <button class="btn-primary-glow" onclick="navigate('all-tools')">
+            <span>🔍</span> Explore Tools
+          </button>
+          <button class="btn-secondary-glow" onclick="navigate('games')">
+            <span>🎮</span> Play Games
+          </button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-cube-wrap">
+          <div class="hero-cube">
+            <div class="cube-face front">5D</div>
+            <div class="cube-face back">AI</div>
+            <div class="cube-face left">🛠️</div>
+            <div class="cube-face right">🎮</div>
+            <div class="cube-face top">💡</div>
+            <div class="cube-face bottom">∞</div>
+          </div>
+        </div>
+        <div class="hero-floating-icons">
+          <div class="fi fi-1">🤖</div>
+          <div class="fi fi-2">📄</div>
+          <div class="fi fi-3">🖼️</div>
+          <div class="fi fi-4">💰</div>
+          <div class="fi fi-5">🎮</div>
+          <div class="fi fi-6">❤️</div>
+          <div class="fi fi-7">💻</div>
+          <div class="fi fi-8">⭐</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-icon">🛠️</div>
+        <div class="stat-num">200+</div>
+        <div class="stat-desc">Powerful Tools</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">🎮</div>
+        <div class="stat-num">20+</div>
+        <div class="stat-desc">Exciting Games</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">🤖</div>
+        <div class="stat-num">25+</div>
+        <div class="stat-desc">Smart Tools</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-desc">Always Free</div>
+      </div>
+    </div>
+
+    <!-- CATEGORY QUICK NAV -->
+    <div class="cat-scroll-wrap">
+      <div class="cat-scroll" id="cat-scroll">
+        <button class="cat-chip active" onclick="filterCat('all')">🛠️ All</button>
+        <button class="cat-chip" onclick="navigate('ai-tools')">🤖 Smart</button>
+        <button class="cat-chip" onclick="navigate('pdf-tools')">📄 PDF</button>
+        <button class="cat-chip" onclick="navigate('image-tools')">🖼️ Image</button>
+        <button class="cat-chip" onclick="navigate('developer')">💻 Developer</button>
+        <button class="cat-chip" onclick="navigate('finance')">💰 Finance</button>
+        <button class="cat-chip" onclick="navigate('student')">🎓 Student</button>
+        <button class="cat-chip" onclick="navigate('health')">❤️ Health</button>
+        <button class="cat-chip" onclick="navigate('games')">🎮 Games</button>
+        <button class="cat-chip" onclick="navigate('fun-viral')">🎉 Fun</button>
+        <button class="cat-chip diwali-chip" onclick="navigate('diwali')">🪔 Diwali</button>
+      </div>
+    </div>
+
+    <section class="diwali-home-section" aria-labelledby="diwali-home-title">
+      <div class="diwali-sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="diwali-copy">
+        <span class="diwali-eyebrow">✨ DIWALI SPECIAL · 2026</span>
+        <h2 id="diwali-home-title">A Little Diwali Surprise<br><span>From ToolHub 5D</span></h2>
+        <p>Light up your digital celebrations with greetings, rangoli, diyas and a little surprise.</p>
+        <div class="diwali-actions">
+          <button class="diwali-primary-btn" onclick="openDiwaliGift()">🎁 Open Your Gift</button>
+          <button class="diwali-ghost-btn" onclick="navigate('diwali')">Explore festive tools →</button>
+        </div>
+      </div>
+      <button class="diwali-gift-stage" onclick="openDiwaliGift()" aria-label="Open your Diwali gift">
+        <span class="diya diya-one">🪔</span><span class="diya diya-two">🪔</span>
+        <span class="gift-glow"></span><span class="gift-lid"></span><span class="gift-box"><b>✦</b></span><span class="gift-ribbon"></span>
+        <small>Tap to open</small>
+      </button>
+    </section>
+
+    <!-- POPULAR TOOLS -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <h2 class="section-title">🔥 Popular Tools</h2>
+        <button class="view-all-btn" onclick="navigate('all-tools')">View all →</button>
+      </div>
+      <div class="tools-grid" id="popular-tools-grid"></div>
+    </div>
+
+    <!-- GAMES SECTION -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <h2 class="section-title">🎮 Play & Enjoy Games</h2>
+        <button class="view-all-btn" onclick="navigate('games')">View all games →</button>
+      </div>
+      <div class="games-scroll" id="games-scroll"></div>
+    </div>
+
+    <!-- AI ASSISTANT BANNER -->
+    <div class="ai-banner" onclick="navigate('ai-assistant')">
+      <div class="ai-banner-left">
+        <div class="ai-banner-icon">🤖</div>
+        <div>
+          <div class="ai-banner-title">Smart Assistant <span class="badge-new">NEW</span></div>
+          <div class="ai-banner-desc">Get instant answers, generate content, summarize text and more in one place.</div>
+        </div>
+      </div>
+      <div class="ai-banner-right">
+        <button class="ai-ask-btn">Ask AI Now ✨</button>
+      </div>
+    </div>
+
+    <!-- RECENTLY USED -->
+    <div class="section-wrap" id="recent-section">
+      <div class="section-header">
+        <h2 class="section-title">🕐 Recently Used</h2>
+        <button class="view-all-btn" onclick="navigate('recent')">Clear all →</button>
+      </div>
+      <div class="recent-chips" id="recent-chips"></div>
+    </div>
+
+    <!-- FEEDBACK + FAVORITES -->
+    <div class="double-grid">
+      <div class="feedback-card">
+        <div class="fc-icon">💬</div>
+        <h3>Feedback</h3>
+        <p>We value your feedback. Help us improve ToolHub 5D.</p>
+        <button class="btn-outline-glow" onclick="navigate('feedback')">💬 Give Feedback</button>
+      </div>
+      <div class="fav-preview">
+        <div class="section-header">
+          <h3>⭐ Favorites</h3>
+          <button class="view-all-btn" onclick="navigate('favorites')">View all →</button>
+        </div>
+        <div class="fav-chips" id="fav-chips"></div>
+      </div>
+    </div>
+
+    <section class="developer-showcase" aria-label="ToolHub 5D developers">
+      <div class="developer-avatars" aria-hidden="true"><div class="developer-avatar">KS</div><div class="developer-avatar developer-avatar-2">VS</div></div>
+      <div class="developer-copy">
+        <span class="developer-eyebrow">BUILT WITH CARE</span>
+        <h2>Developed &amp; designed by <strong>Kuldeep Singh</strong> &amp; <strong>Vidhi Sankhala</strong></h2>
+        <p>Building useful, fast and privacy-conscious digital tools for everyday work, learning and creativity.</p>
+      </div>
+      <div class="developer-links">
+        <a class="developer-link" href="https://www.linkedin.com/in/kuldeep-singh-64403533a" target="_blank" rel="noopener noreferrer"><span>Kuldeep on LinkedIn</span><b>↗</b></a>
+        <a class="developer-link" href="https://www.linkedin.com/in/vidhi-sankhala-57579536b" target="_blank" rel="noopener noreferrer"><span>Vidhi on LinkedIn</span><b>↗</b></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div><strong>ToolHub <span>5D</span></strong><small>Smart tools, thoughtfully made.</small></div>
+      <nav aria-label="Footer links"><button onclick="navigate('documentation')">Documentation</button><button onclick="navigate('privacy')">Privacy & Policy</button><button onclick="navigate('feedback')">Feedback</button></nav>
+      <small>© 2026 ToolHub 5D</small>
+    </footer>
+
+  </section>
+
+  <!-- ALL TOOLS PAGE -->
+  <section id="page-all-tools" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">🛠️ All Tools</h1>
+      <div class="tools-filter-wrap">
+        <input type="text" id="tools-filter-input" placeholder="Filter tools..." class="filter-input" oninput="filterAllTools(this.value)">
+        <div class="filter-row-bottom">
+          <div class="cat-scroll" id="all-tools-cats"></div>
+          <label class="internet-toggle-wrap" title="Show/hide tools that require internet">
+            <span class="it-label">🌐 Internet</span>
+            <div class="it-switch">
+              <input type="checkbox" id="internet-toggle" checked onchange="handleInternetToggle(this.checked)">
+              <span class="it-slider"></span>
+            </div>
+            <span class="it-status" id="it-status">ON</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="tools-grid-full" id="all-tools-grid"></div>
+  </section>
+
+  <!-- AI TOOLS PAGE -->
+  <section id="page-ai-tools" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">🤖 Smart Tools <span class="badge-new">New</span></h1>
+      <p class="page-subheading">Helpful tools for professionals, students and creators.</p>
+    </div>
+    <div class="tools-grid-full" id="ai-tools-grid"></div>
+  </section>
+
+  <!-- PDF TOOLS PAGE -->
+  <section id="page-pdf-tools" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">📄 PDF Tools</h1>
+    </div>
+    <div class="tools-grid-full" id="pdf-tools-grid"></div>
+  </section>
+
+  <!-- IMAGE TOOLS PAGE -->
+  <section id="page-image-tools" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">🖼️ Image Tools</h1>
+    </div>
+    <div class="tools-grid-full" id="image-tools-grid"></div>
+  </section>
+
+  <!-- DEVELOPER PAGE -->
+  <section id="page-developer" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">💻 Developer Tools</h1>
+    </div>
+    <div class="tools-grid-full" id="developer-tools-grid"></div>
+  </section>
+
+  <!-- FINANCE PAGE -->
+  <section id="page-finance" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">💰 Finance Tools</h1>
+    </div>
+    <div class="tools-grid-full" id="finance-tools-grid"></div>
+  </section>
+
+  <!-- STUDENT PAGE -->
+  <section id="page-student" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">🎓 Student Tools</h1>
+    </div>
+    <div class="tools-grid-full" id="student-tools-grid"></div>
+  </section>
+
+  <!-- HEALTH PAGE -->
+  <section id="page-health" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">❤️ Health Tools</h1>
+    </div>
+    <div class="tools-grid-full" id="health-tools-grid"></div>
+  </section>
+
+  <!-- GAMES PAGE -->
+  <section id="page-games" class="page">
+
+    <!-- Hero Banner -->
+    <div class="gp-hero">
+      <div class="gp-hero-content">
+        <div class="gp-hero-tag">🎮 Gaming Hub</div>
+        <h1>Play. Win. Repeat.</h1>
+        <p>19+ premium games — board, puzzles, arcade &amp; more. All free.</p>
+        <div class="gp-hero-stats">
+          <div class="gp-hero-stat"><strong>19+</strong><span>Games</span></div>
+          <div class="gp-hero-stat"><strong>Free</strong><span>Always</span></div>
+          <div class="gp-hero-stat"><strong>1-4</strong><span>Players</span></div>
+        </div>
+      </div>
+      <div class="gp-hero-emoji">🎲</div>
+    </div>
+
+    <!-- Daily Challenge -->
+    <div class="gp-daily" onclick="openGame('ludo')">
+      <div class="gp-daily-icon">⚡</div>
+      <div class="gp-daily-info">
+        <div class="gp-daily-label">Daily Challenge</div>
+        <div class="gp-daily-title">Ludo King — Beat the Clock!</div>
+        <div class="gp-daily-desc">Get all 4 tokens home before time runs out</div>
+      </div>
+      <div class="gp-daily-timer">
+        <div class="time" id="gp-daily-timer">--:--:--</div>
+        <div class="tlabel">resets in</div>
+      </div>
+    </div>
+
+    <!-- Search + Filters -->
+    <div class="gp-search-bar">
+      <div class="gp-search-wrap">
+        <input class="gp-search-input" id="gp-search" placeholder="Search games..." oninput="gpSearch(this.value)" autocomplete="off">
+      </div>
+    </div>
+    <div class="gp-filter-chips">
+      <button class="gp-chip active" onclick="gpFilter('all',this)">All</button>
+      <button class="gp-chip" onclick="gpFilter('board',this)">🎲 Board</button>
+      <button class="gp-chip" onclick="gpFilter('puzzle',this)">🧩 Puzzle</button>
+      <button class="gp-chip" onclick="gpFilter('arcade',this)">🕹️ Arcade</button>
+      <button class="gp-chip" onclick="gpFilter('cards',this)">🃏 Cards</button>
+      <button class="gp-chip" onclick="gpFilter('strategy',this)">♟️ Strategy</button>
+      <button class="gp-chip" onclick="gpFilter('multiplayer',this)">👥 Multi</button>
+    </div>
+
+    <!-- Trending -->
+    <div class="gp-section-head">
+      <div class="gp-section-title">🔥 Trending <span class="badge">HOT</span></div>
+    </div>
+    <div class="gp-featured-row" id="gp-trending-row"></div>
+
+    <!-- All Games -->
+    <div class="gp-section-head">
+      <div class="gp-section-title">🎮 All Games</div>
+      <span style="font-size:.75rem;color:var(--text3)" id="gp-count"></span>
+    </div>
+    <div class="games-grid" id="games-grid"></div>
+
+  </section>
+
+  <!-- FUN & VIRAL PAGE -->
+  <section id="page-fun-viral" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">🎉 Fun & Viral Tools</h1>
+    </div>
+    <div class="tools-grid-full" id="fun-tools-grid"></div>
+  </section>
+
+  <!-- DIWALI SPECIAL PAGE -->
+  <section id="page-diwali" class="page diwali-page">
+    <div class="diwali-page-hero">
+      <div><span class="diwali-eyebrow">🪔 TOOLHUB 5D FESTIVE STUDIO</span><h1 class="page-heading">Diwali Special</h1><p class="page-subheading">Create, decorate and share your light. Everything here runs in your browser.</p></div>
+      <button class="diwali-toggle" onclick="toggleDiwaliTheme()" aria-pressed="false">✨ Festive glow</button>
+    </div>
+    <div class="diwali-tool-grid" id="diwali-tools-grid"></div>
+    <div class="spin-card">
+      <div><span class="diwali-eyebrow">OPTIONAL DAILY SURPRISE</span><h2>Spin & Win</h2><p>One local spin per day. Rewards are digital surprises only—no payment or premium claims.</p></div>
+      <button class="spin-wheel" id="diwali-spin-btn" onclick="spinDiwali()" aria-label="Spin for a Diwali surprise">🪔<span>SPIN</span></button>
+      <div id="diwali-spin-result" class="spin-result" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- FAVORITES PAGE -->
+  <section id="page-favorites" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">⭐ Your Favorites</h1>
+    </div>
+    <div class="tools-grid-full" id="favorites-grid"></div>
+  </section>
+
+  <!-- RECENT PAGE -->
+  <section id="page-recent" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">🕐 Recently Used</h1>
+      <button class="btn-outline-glow" onclick="clearRecent()">Clear All</button>
+    </div>
+    <div class="tools-grid-full" id="recent-grid"></div>
+  </section>
+
+  <!-- FEEDBACK PAGE -->
+  <section id="page-feedback" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">💬 Feedback & Support</h1>
+    </div>
+    <div class="feedback-tabs">
+      <button class="fb-tab active" onclick="switchFeedbackTab('feedback')">💬 Feedback</button>
+      <button class="fb-tab" onclick="switchFeedbackTab('feature')">💡 Feature Request</button>
+      <button class="fb-tab" onclick="switchFeedbackTab('bug')">🐛 Bug Report</button>
+      <button class="fb-tab" onclick="switchFeedbackTab('contact')">📧 Contact</button>
+    </div>
+    <div id="feedback-form-wrap" class="feedback-form-wrap"></div>
+  </section>
+
+  <!-- DOCUMENTATION PAGE -->
+  <section id="page-documentation" class="page info-page">
+    <div class="info-hero">
+      <span class="hero-badge">📚 TOOLHUB 5D GUIDE</span>
+      <h1 class="page-heading">Documentation</h1>
+      <p class="page-subheading">Everything you need to use ToolHub 5D confidently, from choosing a tool to understanding how your data is handled.</p>
+    </div>
+    <div class="info-layout">
+      <aside class="info-toc" aria-label="Documentation sections">
+        <a href="#docs-start">Getting started</a><a href="#docs-tools">Tool categories</a><a href="#docs-data">Data & processing</a><a href="#docs-account">Account & settings</a><a href="#docs-support">Help & support</a>
+      </aside>
+      <div class="info-content">
+        <article id="docs-start" class="info-card"><span class="info-number">01</span><div><h2>Getting started</h2><p>Search from the top bar or open a category from the sidebar. Select a tool, follow its on-screen instructions, then download or copy the result. Most tools work without an account.</p><div class="info-pills"><span>🔍 Search</span><span>🛠️ Choose a tool</span><span>⚡ Use instantly</span></div></div></article>
+        <article id="docs-tools" class="info-card"><span class="info-number">02</span><div><h2>Tool categories</h2><p>ToolHub groups utilities so you can find the right workflow quickly:</p><ul><li><b>AI & Smart:</b> writing, summarizing and productivity helpers.</li><li><b>PDF & Image:</b> browser-based conversion, editing and compression.</li><li><b>Developer:</b> formatting, encoding and coding utilities.</li><li><b>Finance, Health & Student:</b> calculators and everyday planning tools.</li><li><b>Games & Fun:</b> local games and lightweight entertainment.</li></ul></div></article>
+        <article id="docs-data" class="info-card"><span class="info-number">03</span><div><h2>Data & processing</h2><p>Whenever possible, files are processed inside your browser. The page shows when a tool needs an internet connection or an external service. Do not upload confidential files to any online service unless you are comfortable with its terms.</p><div class="info-callout">🔒 Tip: clear your recent list and browser downloads when using a shared device.</div></div></article>
+        <article id="docs-account" class="info-card"><span class="info-number">04</span><div><h2>Account, themes & preferences</h2><p>Sign in only when you want account features such as profile access or cloud-backed preferences. Your theme, favorites and recent tools can be remembered locally on this device. Open the palette icon to change themes, colors and light/dark mode.</p></div></article>
+        <article id="docs-support" class="info-card"><span class="info-number">05</span><div><h2>Help & support</h2><p>If a tool does not behave as expected, refresh the page, check the internet toggle and try a smaller input. Report bugs or request features through <button class="inline-link" onclick="navigate('feedback')">Feedback & Support</button>.</p><p class="info-updated">Last updated: November 2026</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY PAGE -->
+  <section id="page-privacy" class="page info-page">
+    <div class="info-hero">
+      <span class="hero-badge">🛡️ PRIVACY FIRST</span>
+      <h1 class="page-heading">Privacy & Policy</h1>
+      <p class="page-subheading">A clear summary of what ToolHub 5D collects, what stays on your device and what choices you have.</p>
+    </div>
+    <div class="policy-grid">
+      <article class="policy-card"><span>🧭</span><h2>Our approach</h2><p>ToolHub 5D is designed to be useful without requiring an account. We aim to collect the minimum information needed to operate, secure and improve the service.</p></article>
+      <article class="policy-card"><span>💻</span><h2>Local processing</h2><p>Many calculators, converters, games and editors run in your browser. Files selected for local tools are not uploaded by the app. Results may remain temporarily in page memory until you close or refresh the page.</p></article>
+      <article class="policy-card"><span>👤</span><h2>Accounts</h2><p>If you sign in, authentication and profile data are handled by our configured authentication provider. We use it to provide account features and do not sell personal information.</p></article>
+      <article class="policy-card"><span>🍪</span><h2>Storage & cookies</h2><p>Preferences such as theme, favorites and recent tools may be saved in localStorage. Browser settings can clear this data. Essential session or security storage may be used when account features are enabled.</p></article>
+      <article class="policy-card"><span>🔗</span><h2>Third-party services</h2><p>Some optional tools load libraries, AI providers, fonts or authentication services from third parties. Their own privacy policies apply when a request leaves your browser.</p></article>
+      <article class="policy-card"><span>📩</span><h2>Your choices</h2><p>You can avoid signing in, clear local preferences, disable optional internet tools and contact us about privacy questions through the feedback page.</p></article>
+    </div>
+    <div class="policy-footer"><b>Policy updates</b><p>We may update this page when features or laws change. The latest version will always be available here.</p><p class="info-updated">Effective: November 2026 · <button class="inline-link" onclick="navigate('feedback')">Contact support</button></p></div>
+  </section>
+
+  <!-- REFER & EARN PAGE -->
+  <section id="page-refer" class="page">
+    <div id="refer-view"></div>
+  </section>
+
+  <!-- AI ASSISTANT PAGE -->
+  <section id="page-ai-assistant" class="page">
+    <div class="page-header-row">
+      <h1 class="page-heading">🤖 Smart Assistant</h1>
+      <p class="page-subheading">Ask anything, generate content, and get quick help in one clean workspace.</p>
+    </div>
+    <div class="ai-chat-wrap">
+      <div class="ai-chat-messages" id="ai-chat-messages">
+        <div class="ai-message ai-msg">
+          <div class="ai-avatar">🤖</div>
+          <div class="ai-bubble">Hello! I'm your Smart Assistant. I can help you write, summarize, translate, answer questions, generate ideas and more. What can I do for you today?</div>
+        </div>
+      </div>
+      <div class="ai-chat-input-wrap">
+        <select class="ai-model-select" id="ai-model">
+          <option value="openai/gpt-oss-120b" selected>GPT-OSS 120B (Best)</option>
+          <option value="openai/gpt-oss-20b">GPT-OSS 20B (Fast)</option>
+        </select>
+        <div class="ai-input-row">
+          <textarea id="ai-chat-input" placeholder="Ask AI anything... (Shift+Enter for new line)" rows="1" onkeydown="aiChatKeydown(event)"></textarea>
+          <button class="ai-send-btn" onclick="sendAIChat()" id="ai-send-btn">✈️</button>
+        </div>
+        <div class="ai-quick-prompts">
+          <span onclick="setAIPrompt('Write a professional email for...')">📧 Email</span>
+          <span onclick="setAIPrompt('Summarize this text: ')">📝 Summarize</span>
+          <span onclick="setAIPrompt('Translate to Hindi: ')">🌐 Translate</span>
+          <span onclick="setAIPrompt('Generate 10 hashtags for: ')">🏷️ Hashtags</span>
+          <span onclick="setAIPrompt('Write a blog post about: ')">✍️ Blog</span>
+          <span onclick="setAIPrompt('Create a business plan for: ')">💼 Business</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOL VIEW PAGE -->
+  <section id="page-tool" class="page">
+    <div id="tool-view"></div>
+  </section>
+
+  <!-- GAME VIEW PAGE -->
+  <section id="page-game" class="page">
+    <div id="game-view"></div>
+  </section>
+
+  <!-- AUTH PAGES -->
+  <section id="page-auth" class="page">
+    <div id="auth-view"></div>
+  </section>
+
+  <!-- COMPILER PAGE -->
+  <section id="page-compilers" class="page">
+    <div id="compilers-view"></div>
+  </section>
+
+  <!-- ADMIN PAGE -->
+  <section id="page-admin" class="page">
+    <div id="admin-view"></div>
+  </section>
+
+
+</main>
+
+<!-- TOAST -->
+<div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal" class="modal-overlay" onclick="closeAuthModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeAuthModal()">✕</button>
+    <div id="auth-modal-content"></div>
+  </div>
+</div>
+
+<!-- UPGRADE MODAL -->
+<div id="upgrade-modal" class="modal-overlay" onclick="closeUpgradeModal()">
+  <div class="modal-card upgrade-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeUpgradeModal()">✕</button>
+    <div class="upgrade-modal-content">
+      <div class="upgrade-crown">👑</div>
+      <h2>Upgrade to ToolHub Pro</h2>
+      <p>Unlock unlimited AI usage, no ads, and cloud sync.</p>
+      <div class="upgrade-features">
+        <div class="uf-item">✅ No Advertisements</div>
+        <div class="uf-item">✅ Unlimited AI Requests</div>
+        <div class="uf-item">✅ Cloud Sync Favorites</div>
+        <div class="uf-item">✅ Priority Support</div>
+        <div class="uf-item">✅ Exclusive Tools</div>
+      </div>
+
+      <button class="btn-primary-glow" style="width:100%;margin-top:1rem">Coming Soon 🚀</button>
+    </div>
+  </div>
+</div>
+
+<!-- DIWALI GIFT MODAL -->
+<div id="diwali-gift-modal" class="modal-overlay diwali-gift-modal" onclick="closeDiwaliGift()">
+  <div class="diwali-reveal-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeDiwaliGift()">✕</button>
+    <div class="reveal-lights">✦ ✧ ✦</div><div class="reveal-gift">🎁</div>
+    <span class="diwali-eyebrow">YOUR DIGITAL SURPRISE</span>
+    <h2 id="diwali-gift-title">Happy Diwali!</h2><p id="diwali-gift-text">May your year be bright, peaceful and full of good ideas.</p>
+    <button class="diwali-primary-btn" onclick="downloadDiwaliGift()">⬇ Save surprise</button>
+  </div>
+</div>
+
+<!-- PWA INSTALL BANNER -->
+<div id="pwa-banner" class="pwa-banner" style="display:none">
+  <div class="pwa-banner-content">
+    <div class="pwa-icon">📱</div>
+    <div>
+      <b>Install ToolHub 5D</b>
+      <p>Get app-like experience!</p>
+    </div>
+  </div>
+  <div class="pwa-banner-actions">
+    <button onclick="installPWA()" class="btn-primary-glow" style="padding:.4rem .8rem;font-size:.8rem">Install</button>
+    <button onclick="dismissPWA()" class="btn-ghost">Later</button>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="/js/tools-data.js?v=8" defer></script>
+<script src="/js/supabase-client.js?v=8"></script>
+<script src="/js/auth.js?v=8"></script>
+<script src="/js/tools.js?v=8" defer></script>
+<script src="/js/diwali.js?v=8" defer></script>
+<script src="/js/games.js?v=8" defer></script>
+<script src="/js/games-premium.js?v=8" defer></script>
+<script src="/js/games-new.js?v=8" defer></script>
+<script src="/js/media-tools.js?v=8" defer></script>
+<script src="/js/playlist-player.js?v=8" defer></script>
+<script src="/js/ai-huggingface-tools.js?v=8" defer></script>
+<script src="/js/v6-extra-tools.js?v=8" defer></script>
+<script src="/js/compiler.js?v=8" defer></script>
+<script src="/js/email-config.js?v=8" defer></script>
+<script src="/js/email.js?v=8" defer></script>
+<script src="/js/referral.js?v=8" defer></script>
+<script src="/js/app.js?v=8" defer></script>
+<script src="/js/icons.js?v=8" defer></script>
+<script src="/js/welcome-gate.js?v=8" defer></script>
+</body>
+</html>

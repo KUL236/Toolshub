@@ -1,0 +1,99 @@
+# netlify.toml — ToolHub 5D Production Config (fixed)
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+  command = "echo 'Static site — no build needed'"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# ── SPA ROUTING ──────────────────────────────────────────────────
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Supabase OAuth callback: /auth/callback may be used as redirect URI
+[[redirects]]
+  from = "/auth/callback"
+  to = "/index.html"
+  status = 200
+
+# All other routes → SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ── SECURITY HEADERS ─────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+    Cross-Origin-Embedder-Policy = "credentialless"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=self, microphone=self, geolocation=(), payment=()"
+    # ── CSP (fixed) ─────────────────────────────────────────────────────────
+    # Changes vs original:
+    #   connect-src  → added accounts.google.com, googleapis.com (OAuth token exchange)
+    #   script-src   → added cdnjs.cloudflare.com (pdf.js, etc.)
+    #   worker-src   → added blob: (pdf.js web worker)
+    #   form-action  → added accounts.google.com (OAuth POST redirects)
+    #   frame-src    → was 'none'; set to accounts.google.com for OAuth popup fallback
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.groq.com https://api.emailjs.com https://api.ocr.space https://fonts.googleapis.com https://accounts.google.com https://*.googleapis.com https://unpkg.com https://open.spotify.com; worker-src 'self' blob:; frame-src https://accounts.google.com https://open.spotify.com; object-src 'none'; base-uri 'self'; form-action 'self' https://accounts.google.com;"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# JS auth files must never be stale-cached — users would get stuck on old broken code
+[[headers]]
+  for = "/js/auth.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/supabase-client.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# CSS must revalidate: a year-long "immutable" cache kept old stylesheets on phones
+# while new JS/HTML loaded, which broke layouts (huge icons, unstyled panels).
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/manifest+json"
+
+[[headers]]
+  for = "/downloads/*.apk"
+  [headers.values]
+    Content-Type = "application/vnd.android.package-archive"
+    Content-Disposition = "attachment"
+    Cache-Control = "public, max-age=86400"

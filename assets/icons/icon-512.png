@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="113" ry="113" fill="url(#bg)"/>
+  <!-- Shine overlay -->
+  <rect width="512" height="256" rx="113" ry="113" fill="rgba(255,255,255,0.12)"/>
+  <!-- Tool icon: wrench + sparkle -->
+  <text x="256" y="317.44" text-anchor="middle" font-size="256" font-family="system-ui">🛠</text>
+  <!-- ToolHub text for larger icons -->
+  <text x="256" y="450.56" text-anchor="middle" font-size="51" font-family="system-ui, sans-serif" font-weight="800" fill="rgba(255,255,255,0.9)" letter-spacing="1">TOOLHUB</text>
+</svg>

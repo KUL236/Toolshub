@@ -1,0 +1,248 @@
+/* ══════════════════════════════════════════════════════
+   ToolHub 5D — Splash / Loading Screen
+   Orbiting tool icons + animated progress bar shown
+   before the main app becomes interactive.
+   ══════════════════════════════════════════════════════ */
+
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(ellipse at 50% 30%, #14122e 0%, #06060f 60%, #020208 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+#splash-screen.splash-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Starfield */
+#splash-screen .splash-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 70% 20%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 10% 85%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 60% 90%, rgba(255,255,255,0.5), transparent);
+  background-size: 100% 100%;
+  opacity: 0.8;
+}
+
+/* Orbit zone holding center cube + 8 ring icons */
+.splash-orbit {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+}
+
+.splash-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 120px; height: 120px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(139,92,246,0.55);
+  background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(236,72,153,0.18));
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.6rem;
+  box-shadow: 0 0 40px rgba(139,92,246,0.55), inset 0 0 30px rgba(99,102,241,0.25);
+  animation: splash-pulse 2.4s ease-in-out infinite;
+}
+@keyframes splash-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 40px rgba(139,92,246,0.55), inset 0 0 30px rgba(99,102,241,0.25); }
+  50%      { transform: translate(-50%, -50%) scale(1.06); box-shadow: 0 0 60px rgba(236,72,153,0.6), inset 0 0 35px rgba(236,72,153,0.3); }
+}
+
+/* The rotating ring that carries all 8 icons around the center */
+.splash-ring {
+  position: absolute;
+  inset: 0;
+  animation: splash-spin 18s linear infinite;
+}
+@keyframes splash-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.splash-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 56px; height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 14px;
+  background: rgba(13,13,35,0.9);
+  border: 1.5px solid var(--icon-color, #6366f1);
+  box-shadow: 0 0 16px var(--icon-color, #6366f1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  /* counter-rotate so the icon glyph itself stays upright while orbiting */
+  animation: splash-counter-spin 18s linear infinite;
+  transform: rotate(var(--angle)) translate(140px) rotate(calc(-1 * var(--angle)));
+}
+@keyframes splash-counter-spin {
+  from { transform: rotate(var(--angle)) translate(140px) rotate(calc(-1 * var(--angle))); }
+  to   { transform: rotate(calc(var(--angle) + 360deg)) translate(140px) rotate(calc(-1 * (var(--angle) + 360deg))); }
+}
+
+.splash-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #818cf8, #ec4899 55%, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.splash-tagline {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(0.95rem, 4vw, 1.15rem);
+  color: #a5b4fc;
+  margin-bottom: 0.3rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.splash-sub {
+  font-size: 0.85rem;
+  color: var(--text3, #6b7280);
+  margin-bottom: 1.4rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Festive greeting shown during the existing loading screen. */
+.diwali-welcome {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .18rem;
+  margin: -.25rem 0 1rem;
+  color: #fff7ed;
+  text-align: center;
+  z-index: 2;
+}
+.diwali-welcome strong {
+  font-family: Georgia, serif;
+  font-size: clamp(1.45rem, 6vw, 2rem);
+  letter-spacing: .04em;
+  color: #fbbf24;
+  text-shadow: 0 0 10px rgba(251,191,36,.75), 0 0 28px rgba(249,115,22,.45);
+  animation: diwali-welcome-glow 2s ease-in-out infinite;
+}
+.diwali-welcome > span:last-child {
+  color: #fed7aa;
+  font-size: .68rem;
+  letter-spacing: .08em;
+}
+.diwali-welcome-diya {
+  font-size: 1.65rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 9px #fbbf24);
+  animation: diwali-diya-flicker 1.5s ease-in-out infinite;
+}
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  color: #fbbf24;
+  font-size: 1.1rem;
+  text-shadow: 0 -18px #fbbf24, 0 18px #f97316, -18px 0 #fde68a, 18px 0 #f97316, -13px -13px #fb7185, 13px 13px #fde68a, 13px -13px #fbbf24, -13px 13px #fb7185;
+  animation: firework-burst 1.8s ease-out infinite;
+}
+.firework-left { left: 7%; top: 28%; }
+.firework-right { right: 7%; top: 22%; animation-delay: .85s; color: #fb7185; }
+@keyframes diwali-welcome-glow { 0%,100% { transform:scale(1); } 50% { transform:scale(1.04); text-shadow:0 0 16px rgba(251,191,36,.95),0 0 34px rgba(249,115,22,.55); } }
+@keyframes diwali-diya-flicker { 0%,100% { transform:scale(1); } 50% { transform:scale(1.1) rotate(-3deg); } }
+@keyframes firework-burst { 0%,100% { opacity:.15; transform:scale(.3); } 35% { opacity:1; transform:scale(1); } 70% { opacity:.6; transform:scale(1.15); } }
+
+.splash-features {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 1rem;
+}
+.splash-feature { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+.splash-feature-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  border: 1.5px solid var(--f-color);
+  color: var(--f-color);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--f-color) 50%, transparent);
+}
+.splash-feature-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--f-color);
+}
+
+.splash-progress-wrap { width: min(320px, 80vw); text-align: center; }
+.splash-loading-text {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: var(--text2, #9ca3c8);
+  margin-bottom: 0.6rem;
+}
+.splash-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(99,102,241,0.15);
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.splash-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3b82f6, #818cf8 50%, #ec4899);
+  box-shadow: 0 0 12px rgba(139,92,246,0.7);
+  transition: width 0.18s ease-out;
+}
+.splash-percent { font-size: 0.85rem; font-weight: 700; color: var(--text, #e8e8ff); }
+
+.splash-powered {
+  margin-top: 1.4rem;
+  font-size: 0.75rem;
+  color: var(--text3, #6b7280);
+  padding: 5px 16px;
+  border: 1px solid rgba(139,92,246,0.4);
+  border-radius: 999px;
+}
+.splash-powered b { color: #ec4899; }
+
+@media (max-width: 480px) {
+  .splash-orbit { width: 230px; height: 230px; }
+  .splash-center { width: 96px; height: 96px; font-size: 2.1rem; }
+  .splash-icon { width: 46px; height: 46px; margin: -23px 0 0 -23px; font-size: 1.25rem; transform: rotate(var(--angle)) translate(112px) rotate(calc(-1 * var(--angle))); }
+  @keyframes splash-counter-spin {
+    from { transform: rotate(var(--angle)) translate(112px) rotate(calc(-1 * var(--angle))); }
+    to   { transform: rotate(calc(var(--angle) + 360deg)) translate(112px) rotate(calc(-1 * (var(--angle) + 360deg))); }
+  }
+  .splash-features { gap: 1.1rem; }
+  .diwali-welcome { margin-bottom:.75rem; }
+  .firework { transform:scale(.75); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-ring, .splash-icon, .splash-center, .diwali-welcome strong, .diwali-welcome-diya, .firework { animation: none !important; }
+}

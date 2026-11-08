@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment secrets — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Netlify local dev
+.netlify/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# Test artifacts
+/tmp/

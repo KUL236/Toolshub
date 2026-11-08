@@ -1,0 +1,110 @@
+/* v6-enhancements.css — Welcome screen, typography hierarchy, UI polish, smoothness.
+   Additive only — does not override or remove any existing style.css rules. */
+
+/* ── WELCOME / LOGIN OVERLAY ────────────────────────────────────────────── */
+.welcome-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: none; align-items: center; justify-content: center;
+  padding: 1.25rem;
+  background: rgba(6,8,15,.88);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0; transition: opacity .25s ease;
+}
+.welcome-overlay.open { display: flex; opacity: 1; }
+.welcome-card {
+  position: relative; max-width: 440px; width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--r-2xl);
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0,0,0,.5);
+  transform: scale(.94) translateY(10px);
+  animation: welcomeIn .35s cubic-bezier(.2,.9,.3,1) forwards;
+}
+@keyframes welcomeIn { to { transform: scale(1) translateY(0); } }
+.welcome-bg-anim { display: none; }
+.w-orb { position: absolute; border-radius: 50%; filter: blur(40px); opacity: .35; animation: orbFloat 8s ease-in-out infinite; }
+.w-orb-1 { width: 160px; height: 160px; background: #6366f1; top: -40px; left: -30px; }
+.w-orb-2 { width: 140px; height: 140px; background: #ec4899; bottom: -30px; right: -20px; animation-delay: 1.5s; }
+.w-orb-3 { width: 100px; height: 100px; background: #06b6d4; top: 40%; right: 10%; animation-delay: 3s; }
+@keyframes orbFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-18px) scale(1.08); } }
+.welcome-close {
+  position: absolute; top: 14px; right: 14px; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border);
+  background: rgba(255,255,255,.06); color: var(--text); font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, transform .2s;
+}
+.welcome-close:hover { background: var(--red); }
+.welcome-content { position: relative; z-index: 1; }
+.welcome-logo { font-size: 2.6rem; margin-bottom: .5rem; }
+.welcome-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: .01em; margin-bottom: .5rem; }
+.welcome-sub { color: var(--text2); font-size: .92rem; line-height: 1.55; margin-bottom: 1.6rem; }
+.welcome-actions { display: flex; flex-direction: column; gap: .65rem; margin-bottom: 1.2rem; }
+.welcome-btn {
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  padding: .8rem 1rem; border-radius: 12px; border: 1px solid var(--border);
+  background: rgba(255,255,255,.04); color: var(--text);
+  font-family: var(--font-ui); font-weight: 600; font-size: .92rem; cursor: pointer;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.welcome-btn:hover { border-color: var(--border-h); background: rgba(255,255,255,.08); }
+.welcome-btn-signup { background: var(--grad-main); border: none; color: #fff; }
+.wb-icon { font-size: 1.05rem; }
+.welcome-guest-link { background: none; border: none; color: var(--text2); font-size: .85rem; text-decoration: underline; cursor: pointer; padding: .4rem; }
+.welcome-guest-link:hover { color: var(--text); }
+
+/* ── TYPOGRAPHY HIERARCHY ───────────────────────────────────────────────── */
+/* Deliberate role-based type scale layered on top of the existing fonts —
+   headings use the display font, body/UI text stays on the existing body/ui
+   fonts, but weight + tracking now clearly separate each role. */
+h1, .page-heading, .tool-page-title { font-family: var(--font-display); font-weight: 800; letter-spacing: -.01em; }
+h2, .section-title { font-family: var(--font-display); font-weight: 700; letter-spacing: -.005em; }
+h3 { font-family: var(--font-display); font-weight: 600; }
+.tool-page-desc, .tool-card-desc, p { font-family: var(--font-body); font-weight: 400; line-height: 1.6; }
+.form-label, .breadcrumb, .tool-action-btn { font-family: var(--font-ui); font-weight: 600; letter-spacing: .01em; text-transform: none; }
+button, .btn-primary-glow, .btn-outline-glow, .btn-secondary-glow { font-family: var(--font-ui); font-weight: 600; letter-spacing: .01em; }
+.tool-page-desc, .welcome-sub { font-size: .95rem; color: var(--text2); }
+small, .tool-card-tag, .breadcrumb span { font-family: var(--font-ui); font-weight: 500; font-size: .78rem; letter-spacing: .02em; }
+
+/* ── UI POLISH: cards, buttons, hover, shadows ──────────────────────────── */
+.tool-card, .game-card {
+  transition: transform .22s cubic-bezier(.2,.8,.3,1), box-shadow .22s ease, border-color .22s ease;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-md);
+  border-color: var(--border-h);
+}
+.btn-primary-glow, .btn-outline-glow, .btn-secondary-glow {
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn-primary-glow:hover { filter: brightness(1.08); }
+.btn-primary-glow:active, .btn-outline-glow:active { transform: translateY(0) scale(.98); }
+
+/* ── SMOOTHNESS: transitions, skeleton loaders, reduced layout shift ───── */
+* { scroll-behavior: smooth; }
+.page { transition: opacity .25s ease; }
+img { transition: opacity .3s ease; }
+img[loading="lazy"] { opacity: 0; }
+img[loading="lazy"].loaded, img[loading="lazy"]:not([src=""]) { opacity: 1; }
+
+.skeleton {
+  background: linear-gradient(100deg, var(--glass2) 30%, rgba(255,255,255,.08) 50%, var(--glass2) 70%);
+  background-size: 200% 100%;
+  animation: skeletonShine 1.4s ease-in-out infinite;
+  border-radius: 10px;
+}
+@keyframes skeletonShine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, .welcome-card, .w-orb, .tool-card, .btn-primary-glow { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 640px) {
+  .welcome-card { padding: 2rem 1.4rem 1.6rem; border-radius: var(--r-xl); }
+  .welcome-title { font-size: 1.25rem; }
+}

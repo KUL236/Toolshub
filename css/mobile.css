@@ -1,0 +1,695 @@
+/* ══════════════════════════════════════════════════════
+   ToolHub 5D — Android Mobile Responsive Improvements
+   Targets: max-width 768px (tablets) and 480px (phones)
+   Desktop/tablet ≥769px: UNTOUCHED
+   ══════════════════════════════════════════════════════ */
+
+/* ── MOBILE SEARCH BAR (below header) ── */
+#mobile-search-bar {
+  display: none;
+  position: fixed;
+  top: var(--navbar-h);
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 8px 12px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+#mobile-search-bar .search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+#mobile-search-bar .search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  z-index: 1;
+}
+#mobile-search-input {
+  width: 100%;
+  padding: 10px 44px 10px 38px;
+  background: var(--glass2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition: var(--tr);
+}
+#mobile-search-input:focus {
+  border-color: var(--indigo);
+  background: var(--card);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+}
+#mobile-search-input::placeholder { color: var(--text3); }
+#mobile-voice-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  color: var(--text3);
+  font-size: 1rem;
+  padding: 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#mobile-voice-btn:hover { color: var(--indigo); }
+#mobile-search-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--card);
+  border: 1px solid var(--border-h);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-xl);
+  z-index: 2100;
+  max-height: 320px;
+  overflow-y: auto;
+}
+#mobile-search-dropdown.show { display: block; }
+
+/* ── FLOATING SI ASSISTANT BUTTON ── */
+#floating-si-btn {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 1500;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--indigo);
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: var(--tr-b);
+  -webkit-tap-highlight-color: transparent;
+}
+#floating-si-btn:active { transform: scale(0.92); }
+#floating-si-btn .si-tooltip {
+  display: none;
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  color: var(--text);
+  box-shadow: var(--sh-md);
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════
+   TABLET — max-width 768px
+   ════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── FLOATING SI BUTTON ── */
+  #floating-si-btn { display: flex; }
+
+  /* ── SHOW MOBILE SEARCH BAR ── */
+  #mobile-search-bar { display: block; }
+
+  /* ── ADJUST MAIN CONTENT TOP for mobile search bar ── */
+  :root { --mobile-search-h: 52px; }
+  #main-content {
+    padding-top: calc(var(--navbar-h) + var(--mobile-search-h)) !important;
+  }
+
+  /* ── NAVBAR: hide desktop search, hide AI btn text, hide sign in/up ── */
+  .navbar-search-wrap { display: none !important; }
+  .nav-ai-btn { display: none !important; }
+  .nav-auth-btns { display: none !important; }
+
+  /* Keep only: hamburger, logo, theme toggle, notif, avatar */
+  .navbar-actions {
+    gap: 4px;
+    margin-left: auto;
+  }
+  .nav-icon-btn {
+    width: 40px;
+    height: 40px;
+    min-height: 48px;
+    flex-shrink: 0;
+  }
+
+  /* ── NAVBAR COMPACT ── */
+  #navbar {
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .nav-logo-text { font-size: 1rem; }
+  .nav-logo-5d { font-size: 0.7rem; }
+
+  /* ── HERO SECTION — compact ── */
+  .hero-section {
+    flex-direction: column;
+    padding: 1rem 0 1rem;
+    min-height: auto;
+    gap: 0.75rem;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-badge {
+    font-size: 0.72rem;
+    padding: 5px 12px;
+    margin-bottom: 0.6rem;
+  }
+  .hero-title { margin-bottom: 0.6rem; }
+  .hero-title-line1 { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .hero-title-line2 { font-size: clamp(1.2rem, 6vw, 1.7rem); }
+  .hero-subtitle {
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary-glow,
+  .btn-secondary-glow {
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 0.88rem;
+    justify-content: center;
+    flex: 1;
+    min-width: 130px;
+    max-width: 200px;
+  }
+  /* Android download button — full width below the two buttons */
+  .btn-android-download {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+    font-size: 0.9rem;
+    min-height: 48px;
+    order: 3; /* always last in the flex row */
+    margin-top: 2px;
+  }
+  /* Show the 5D cube under the buttons on mobile (not absolutely positioned, no overlap) */
+  .hero-section { flex-direction: column !important; }
+  .hero-visual {
+    display: block !important;
+    position: static !important;
+    width: 170px !important;
+    height: 170px !important;
+    margin: 18px auto 28px !important;
+    order: 4;
+  }
+  .hero-cube-wrap { position: static !important; transform: none !important; }
+  .hero-cube { width: 170px !important; height: 170px !important; margin: 0 auto; }
+  .cube-face { width: 170px !important; height: 170px !important; }
+  .cube-face.front  { transform: translateZ(85px) !important; }
+  .cube-face.back   { transform: rotateY(180deg) translateZ(85px) !important; }
+  .cube-face.left   { transform: rotateY(-90deg) translateZ(85px) !important; }
+  .cube-face.right  { transform: rotateY(90deg) translateZ(85px) !important; }
+  .cube-face.top    { transform: rotateX(90deg) translateZ(85px) !important; }
+  .cube-face.bottom { transform: rotateX(-90deg) translateZ(85px) !important; }
+  /* Floating icons would clutter a small mobile card, hide just those */
+  .hero-floating-icons { display: none !important; }
+
+  /* Contain orbs so they don't bleed below hero content on mobile */
+  .orb-1 { width: 280px; height: 280px; top: -120px; left: -120px; opacity: 0.5; }
+  .orb-2 { width: 250px; height: 250px; bottom: auto; top: 60%; right: -80px; opacity: 0.4; }
+  .orb-3 { width: 200px; height: 200px; top: 30%; opacity: 0.35; }
+  .orb-4 { display: none; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 1rem;
+  }
+  .stat-item { padding: 0.85rem 0.6rem; }
+  .stat-icon { font-size: 1.2rem; }
+  .stat-num { font-size: 1.1rem; }
+  .stat-desc { font-size: 0.7rem; }
+
+  /* ── CATEGORY SCROLL — sticky + snap ── */
+  .cat-scroll-wrap {
+    position: sticky;
+    top: calc(var(--navbar-h) + var(--mobile-search-h));
+    z-index: 90;
+    background: var(--bg);
+    margin-bottom: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 8px 1rem;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .cat-scroll-wrap::-webkit-scrollbar { display: none; }
+  .cat-scroll {
+    display: flex;
+    gap: 8px;
+    padding-bottom: 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cat-chip {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    min-height: 36px;
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    border-radius: 99px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ── TOOL CARDS — 2 per row on tablets ── */
+  .tools-grid,
+  .tools-grid-full {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .tool-card {
+    padding: 1rem;
+    border-radius: var(--r-md);
+    min-height: 130px;
+    /* Equal card height via grid alignment */
+    display: flex;
+    flex-direction: column;
+  }
+  .tool-card:hover { transform: none; }
+  .tool-card:active {
+    transform: scale(0.97);
+    background: var(--card-hover);
+    transition: transform 0.1s ease;
+  }
+  .tc-icon { font-size: 1.5rem; }
+  .tc-name { font-size: 0.82rem; }
+  .tc-desc { font-size: 0.72rem; line-height: 1.4; }
+  .tc-open-btn {
+    min-height: 32px;
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+  .tc-fav { opacity: 0.6; } /* always show on touch devices */
+
+  /* ── GAMES GRID ── */
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .game-card {
+    padding: 1rem;
+    min-height: 48px;
+    border-radius: var(--r-md);
+  }
+  .game-card:hover { transform: none; }
+  .game-card:active { transform: scale(0.97); }
+  .game-card-icon { font-size: 2.2rem; }
+  .game-card-name { font-size: 0.85rem; }
+  .game-card-desc { font-size: 0.7rem; }
+  .game-card-btn {
+    min-height: 36px;
+    padding: 8px 14px;
+    font-size: 0.76rem;
+  }
+
+  /* ── GAMES SCROLL (horizontal) ── */
+  .games-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .games-scroll::-webkit-scrollbar { display: none; }
+  .game-thumb {
+    scroll-snap-align: start;
+    width: 90px;
+    padding: 0.75rem;
+    min-height: 80px;
+    touch-action: manipulation;
+  }
+  .game-thumb:active { transform: scale(0.95); }
+  .gt-img { font-size: 1.8rem; }
+  .gt-name { font-size: 0.7rem; }
+
+  /* ── AI BANNER ── */
+  .ai-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  .ai-banner-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .ai-ask-btn {
+    min-height: 44px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  /* ── DOUBLE GRID ── */
+  .double-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  /* ── PAGE PADDING ── */
+  .page { padding: 1rem !important; }
+
+  /* ── SECTION WRAP ── */
+  .section-wrap { margin-bottom: 1.5rem; }
+  .section-title { font-size: 1rem; }
+
+  /* ── SEARCH DROPDOWN in mobile-search-bar ── */
+  .search-dropdown {
+    left: 12px;
+    right: 12px;
+    top: calc(100% + 6px);
+    max-height: 280px;
+  }
+
+  /* ── GAME CANVAS WRAP ── */
+  .game-canvas-wrap { border-radius: var(--r-lg); overflow: hidden; }
+  .game-view-wrap { padding-bottom: 80px; } /* space for floating SI btn */
+
+  /* ── GAME CONTROL BUTTONS (larger tap targets) ── */
+  .game-control-btn {
+    min-height: 48px;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header-row { flex-direction: column; gap: 0.75rem; align-items: stretch; }
+  .filter-row-bottom { flex-wrap: wrap; }
+  .filter-row-bottom .cat-scroll { flex: 1 1 100%; }
+  .filter-input { max-width: none; }
+  .page-heading { font-size: 1.2rem; }
+
+  /* ── FEEDBACK TABS ── */
+  .feedback-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+  .feedback-tabs::-webkit-scrollbar { display: none; }
+  .fb-tab {
+    flex-shrink: 0;
+    min-height: 40px;
+    white-space: nowrap;
+    font-size: 0.82rem;
+  }
+
+  /* ── AI CHAT ── */
+  .ai-chat-wrap { height: calc(100vh - var(--navbar-h) - var(--mobile-search-h) - 2rem); }
+  .ai-quick-prompts { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .ai-quick-prompts::-webkit-scrollbar { display: none; }
+  .ai-quick-prompts span {
+    flex-shrink: 0;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* ── PWA BANNER ── */
+  .pwa-banner { margin: 0 0.5rem; border-radius: var(--r-md); }
+
+  /* ── MODAL ── */
+  .modal-card { margin: 1rem; border-radius: var(--r-xl); max-height: 85vh; overflow-y: auto; }
+
+  /* ── UPGRADE MODAL ── */
+  .upgrade-card { padding: 1.5rem; }
+
+  /* ── SIDEBAR IMPROVEMENTS ── */
+  .sidebar-item { min-height: 48px; }
+  .sidebar-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  /* ── TOOL VIEW PAGE ── */
+  .tool-page-header { flex-direction: column; align-items: flex-start; }
+  .tool-page-icon { width: 50px; height: 50px; font-size: 1.6rem; }
+
+  /* ── BUTTONS GENERAL ── */
+  .btn-primary-glow,
+  .btn-secondary-glow,
+  .btn-outline-glow {
+    min-height: 48px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* ── SNAKE GAME canvas ── */
+  #snake-canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ── LUDO CANVAS ── */
+  #ludo-canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 380px;
+    touch-action: none;
+  }
+  #ludo-dice-canvas { flex-shrink: 0; }
+
+  /* ── SNAKE & LADDER BOARD ── */
+  #sl-board {
+    max-width: 100% !important;
+  }
+
+  /* ── HIDDEN: floating icons in hero ── */
+  .fi { display: none; }
+
+  /* ── DISABLE hover effects on touch devices ── */
+  @media (hover: none) {
+    .tool-card:hover { transform: none; box-shadow: none; border-color: var(--border); }
+    .game-card:hover { transform: none; box-shadow: none; }
+    .game-thumb:hover { transform: none; box-shadow: none; }
+    .btn-primary-glow:hover { transform: none; }
+    .btn-secondary-glow:hover { transform: none; }
+    .cat-chip:hover { background: var(--glass2); border-color: var(--border); color: var(--text2); }
+    .cat-chip.active { background: rgba(99,102,241,0.14); border-color: var(--indigo); color: #818cf8; }
+    .game-control-btn:hover { transform: none; }
+    .upgrade-btn:hover { transform: none; }
+  }
+
+  /* ── PERFORMANCE: reduce animations on mobile ── */
+  /* Slow down orb animations for battery saving */
+  .orb { animation-duration: 45s; }
+  #particle-canvas { opacity: 0.2; }
+}
+
+/* ════════════════════════════════════════
+   SMALL PHONES — max-width 480px
+   ════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* ── TOOL CARDS: 2 per row on larger phones, stays 2 ── */
+  .tools-grid,
+  .tools-grid-full {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .tool-card { padding: 0.85rem; min-height: 120px; }
+  .tc-icon { font-size: 1.4rem; }
+  .tc-name { font-size: 0.78rem; }
+  .tc-desc { font-size: 0.68rem; }
+
+  /* ── GAMES GRID: 2 per row ── */
+  .games-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+  /* ── STATS BAR ── */
+  .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1px; }
+  .stat-item { padding: 0.65rem 0.5rem; }
+  .stat-icon { font-size: 1rem; }
+  .stat-num { font-size: 1rem; }
+  .stat-desc { font-size: 0.65rem; }
+
+  /* ── HERO ── */
+  .hero-section { padding: 0.75rem 0; gap: 0.5rem; }
+  .hero-title-line1 { font-size: clamp(1.3rem, 7.5vw, 1.7rem); }
+  .hero-title-line2 { font-size: clamp(1.1rem, 6.5vw, 1.4rem); }
+  .hero-subtitle { font-size: 0.82rem; margin-bottom: 0.8rem; }
+  .hero-cta { gap: 8px; flex-direction: row; flex-wrap: nowrap; width: 100%; }
+  .hero-cta .btn-primary-glow, .hero-cta .btn-secondary-glow {
+    font-size: 0.82rem;
+    padding: 10px 12px;
+    min-width: 0;
+    max-width: none;
+    flex: 1 1 0;
+  }
+  .btn-primary-glow, .btn-secondary-glow { font-size: 0.82rem; }
+  .btn-android-download {
+    font-size: 0.82rem;
+    padding: 11px 16px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── PAGE ── */
+  .page { padding: 0.75rem !important; }
+
+  /* ── CATEGORY CHIPS ── */
+  .cat-chip { font-size: 0.76rem; padding: 6px 12px; }
+
+  /* ── SECTION HEADER ── */
+  .section-title { font-size: 0.95rem; }
+  .view-all-btn { font-size: 0.78rem; }
+
+  /* ── AI CHAT ── */
+  #ai-chat-input { font-size: 0.88rem; }
+  .ai-model-select { font-size: 0.78rem; }
+
+  /* ── GAME CONTROL BUTTONS ── */
+  .game-control-btn { font-size: 0.85rem; min-height: 44px; padding: 8px 16px; }
+
+  /* ── LUDO SETUP BUTTONS ── */
+  #ludo-setup button { min-height: 44px; font-size: 0.9rem !important; padding: 8px 18px !important; }
+
+  /* ── FLOATING SI ── */
+  #floating-si-btn { width: 52px; height: 52px; font-size: 1.3rem; bottom: 20px; right: 16px; }
+}
+
+/* ════════════════════════════════════════
+   VERY SMALL PHONES — max-width 360px
+   (1-card per row)
+   ════════════════════════════════════════ */
+@media (max-width: 360px) {
+  .tools-grid,
+  .tools-grid-full {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .games-grid { grid-template-columns: 1fr; }
+  .hero-title-line1 { font-size: 1.3rem; }
+  .hero-title-line2 { font-size: 1.1rem; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ════════════════════════════════════════
+   LUDO & SNAKE LADDER — Portrait mode
+   ════════════════════════════════════════ */
+@media (max-width: 768px) and (orientation: portrait) {
+  #ludo-canvas {
+    width: min(100%, 360px) !important;
+    height: auto !important;
+  }
+  .game-canvas-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+  }
+  #sl-board {
+    max-width: min(100%, 340px) !important;
+    margin: 0 auto 0.6rem;
+  }
+  /* Ludo dice row */
+  #ludo-game > div:nth-child(3) {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  /* Ludo info row */
+  #ludo-info { padding: 0 0.5rem; }
+}
+
+/* ════════════════════════════════════════
+   SAFE AREA (Android/iOS notch support)
+   ════════════════════════════════════════ */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  #floating-si-btn {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+  .pwa-banner {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  .ai-chat-input-wrap {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ════════════════════════════════════════
+   LAZY-LOAD FADE IN (performance)
+   ════════════════════════════════════════ */
+.lazy-section {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  will-change: opacity, transform;
+}
+.lazy-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ════════════════════════════════════════
+   ACCESSIBILITY — Larger tap targets
+   ════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* All interactive elements get minimum 44px touch target */
+  .sidebar-item,
+  .cat-chip,
+  .game-control-btn,
+  .btn-primary-glow,
+  .btn-secondary-glow,
+  .btn-outline-glow,
+  .fb-tab,
+  .view-all-btn,
+  .nav-icon-btn,
+  .hamburger-btn,
+  .tc-open-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Better text readability on mobile */
+  body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  .tc-desc, .tc-name, .game-card-desc, .game-card-name {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Input fields - bigger font to prevent iOS zoom */
+  input, select, textarea {
+    font-size: 16px !important; /* prevents iOS auto-zoom */
+  }
+  #mobile-search-input { font-size: 16px !important; }
+
+  /* Increase line height for readability */
+  .hero-subtitle, .page-subheading { line-height: 1.65; }
+
+  /* No overflow on any child element */
+  * { max-width: 100%; }
+  img, canvas { max-width: 100%; }
+}
