@@ -255,6 +255,14 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: non
   display: flex; align-items: center; gap: 12px;
   padding: 0 1rem; transition: box-shadow 0.3s;
 }
+@supports (padding-top: env(safe-area-inset-top)) {
+  #navbar {
+    padding-top: env(safe-area-inset-top);
+    height: calc(var(--navbar-h) + env(safe-area-inset-top));
+  }
+  .navbar-search-wrap { top: calc(var(--navbar-h) + env(safe-area-inset-top)); }
+  #main-content { padding-top: calc(var(--navbar-h) + 60px + env(safe-area-inset-top)); }
+}
 #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.22); }
 
 .navbar-left { display: flex; align-items: center; gap: 10px; }
@@ -273,7 +281,17 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: non
 .nav-logo-text { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; background: var(--grad-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .nav-logo-5d { font-family: var(--font-display); font-size: 0.75rem; font-weight: 800; background: var(--grad-ai); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-.navbar-search-wrap { flex: 1; max-width: 520px; margin: 0 auto; }
+.navbar-search-wrap {
+  position: fixed;
+  top: var(--navbar-h);
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 8px max(12px, env(safe-area-inset-left)) 8px max(12px, env(safe-area-inset-right));
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-search-wrap .search-container { max-width: 720px; margin: 0 auto; }
 .search-container { position: relative; display: flex; align-items: center; }
 .search-icon { position: absolute; left: 12px; font-size: 0.9rem; pointer-events: none; z-index: 1; }
 #search-input {
@@ -383,7 +401,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: non
 
 /* ── MAIN CONTENT ── */
 #main-content {
-  padding-top: var(--navbar-h);
+  padding-top: calc(var(--navbar-h) + 60px);
   min-height: 100vh;
   position: relative; z-index: 1;
 }
@@ -517,20 +535,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: non
 /* Keep the home dashboard breathable without changing its structure. */
 #page-home .section-wrap { margin-bottom:1.55rem; } #page-home .tools-grid,#page-home .games-scroll { gap:11px; } #page-home .hero-section { max-width:1260px; margin:0 auto; } #page-home .hero-floating-icons { opacity:.65; } .orb { opacity:.42; } #particle-canvas { opacity:.45; }
 
-/* ── DIWALI SPECIAL ── */
-.diwali-chip,.diwali-badge { background:rgba(245,158,11,.16)!important; border-color:rgba(245,158,11,.35)!important; color:#fbbf24!important; }
-.diwali-home-section { position:relative; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:270px; margin:0 0 2rem; padding:2rem clamp(1.2rem,4vw,3rem); overflow:hidden; border:1px solid rgba(245,158,11,.3); border-radius:24px; background:radial-gradient(circle at 75% 40%,rgba(245,158,11,.18),transparent 25%),linear-gradient(115deg,#18070d,#47111a 55%,#261008); box-shadow:0 18px 45px rgba(67,15,20,.25),inset 0 0 50px rgba(245,158,11,.05); }
-.diwali-copy { position:relative; z-index:2; max-width:620px; }.diwali-eyebrow { color:#fbbf24; font:800 .62rem var(--font-display); letter-spacing:.16em; }.diwali-copy h2 { margin:.45rem 0 .6rem; color:#fff7ed; font:800 clamp(1.4rem,3.8vw,2.4rem) var(--font-display); line-height:1.1; }.diwali-copy h2 span { color:#fbbf24; }.diwali-copy p { max-width:520px; color:#fbd5b5; font-size:.84rem; line-height:1.6; }.diwali-actions { display:flex; align-items:center; flex-wrap:wrap; gap:.7rem; margin-top:1rem; }
-.diwali-primary-btn { padding:.68rem 1rem; border:1px solid #fbbf24; border-radius:11px; color:#3b1407; background:linear-gradient(135deg,#fde68a,#f59e0b); box-shadow:0 7px 22px rgba(245,158,11,.25); font-weight:800; transition:var(--tr-b); }.diwali-primary-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(245,158,11,.38); }.diwali-ghost-btn { padding:.65rem .8rem; color:#fcd34d; background:transparent; font-size:.75rem; font-weight:700; }.diwali-ghost-btn:hover { color:#fff7ed; }
-.diwali-gift-stage { position:relative; z-index:2; flex:0 0 210px; height:210px; border:0; color:#fde68a; background:transparent; cursor:pointer; }.gift-glow { position:absolute; left:50%; top:47%; width:150px; height:150px; transform:translate(-50%,-50%); border-radius:50%; background:#f59e0b; opacity:.2; filter:blur(26px); animation:diwali-glow 3s ease-in-out infinite; }.gift-box,.gift-lid { position:absolute; left:50%; background:linear-gradient(135deg,#fbbf24,#b45309 75%); border:2px solid #fde68a; box-shadow:inset -12px -10px 20px rgba(92,30,8,.28),0 12px 20px rgba(0,0,0,.25); }.gift-box { top:49%; width:105px; height:77px; transform:translate(-50%,-10%); border-radius:7px; }.gift-lid { top:42%; width:120px; height:28px; transform:translate(-50%,-10%); border-radius:7px; z-index:2; }.gift-ribbon { position:absolute; z-index:3; left:50%; top:41%; width:18px; height:88px; transform:translateX(-50%); background:#991b1b; border:1px solid #fecaca; box-shadow:0 0 8px #fbbf2455; }.gift-box b { display:block; margin-top:25px; color:#fff7ed; font-size:1.4rem; }.diwali-gift-stage small { position:absolute; left:0; right:0; bottom:4px; color:#fcd34d; font-size:.68rem; }.diya { position:absolute; z-index:4; font-size:2rem; animation:diwali-flicker 1.8s ease-in-out infinite; }.diya-one { left:3px; top:54px; }.diya-two { right:0; top:92px; animation-delay:.8s; }.diwali-sparkles i { position:absolute; width:4px; height:4px; border-radius:50%; background:#fde68a; box-shadow:0 0 10px #fbbf24; animation:diwali-float 4s ease-in-out infinite; }.diwali-sparkles i:nth-child(1){left:8%;top:20%}.diwali-sparkles i:nth-child(2){left:45%;top:13%;animation-delay:.7s}.diwali-sparkles i:nth-child(3){right:35%;bottom:18%;animation-delay:1.2s}.diwali-sparkles i:nth-child(4){right:8%;top:25%;animation-delay:1.8s}.diwali-sparkles i:nth-child(5){left:34%;bottom:10%;animation-delay:2.5s}
-.diwali-page { max-width:1180px; }.diwali-page-hero { display:flex; align-items:end; justify-content:space-between; gap:1rem; margin:.4rem 0 1.35rem; padding:1.3rem 1.4rem; border:1px solid rgba(245,158,11,.25); border-radius:18px; background:linear-gradient(110deg,rgba(127,29,29,.28),rgba(245,158,11,.08)); }.diwali-page-hero .page-heading { margin:.35rem 0 .2rem; }.diwali-toggle { padding:.55rem .8rem; border:1px solid rgba(245,158,11,.45); border-radius:10px; color:#fbbf24; background:rgba(245,158,11,.1); font-size:.72rem; font-weight:700; }.diwali-tool-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.8rem; }.diwali-tool-card { display:flex; flex-direction:column; min-height:205px; padding:1rem; border:1px solid rgba(245,158,11,.2); border-radius:16px; background:linear-gradient(150deg,rgba(127,29,29,.14),var(--card)); transition:var(--tr-b); }.diwali-tool-card:hover { transform:translateY(-4px); border-color:#f59e0b; box-shadow:0 12px 26px rgba(245,158,11,.14); }.diwali-tool-icon { font-size:2rem; margin-bottom:.75rem; }.diwali-tool-card h2 { color:var(--text); font:750 .9rem var(--font-display); }.diwali-tool-card p { margin:.35rem 0; color:var(--text3); font-size:.72rem; line-height:1.5; }.diwali-tool-card button { margin-top:auto; padding:.45rem .6rem; border:1px solid rgba(245,158,11,.35); border-radius:9px; color:#fbbf24; background:rgba(245,158,11,.08); font-size:.7rem; font-weight:700; }.diwali-tool-card button span { float:right; }.spin-card { display:grid; grid-template-columns:1fr 130px 1fr; align-items:center; gap:1rem; margin-top:1rem; padding:1.2rem; border:1px solid rgba(245,158,11,.24); border-radius:18px; background:linear-gradient(100deg,rgba(127,29,29,.18),rgba(245,158,11,.09)); }.spin-card h2 { margin:.3rem 0; color:var(--text); font:800 1.25rem var(--font-display); }.spin-card p,.spin-result { color:var(--text3); font-size:.76rem; line-height:1.5; }.spin-wheel { display:grid; place-items:center; width:110px; height:110px; margin:auto; border:5px solid #fbbf24; border-radius:50%; color:#3b1407; background:conic-gradient(#fbbf24,#f97316,#fde68a,#fbbf24); box-shadow:0 0 28px rgba(245,158,11,.35); font-size:1.3rem; font-weight:900; transition:transform .8s cubic-bezier(.2,.8,.2,1); }.spin-wheel span { display:block; font-size:.55rem; }.spin-wheel:active { transform:rotate(540deg); }.spin-wheel:disabled { opacity:.7; cursor:wait; }.spin-result { text-align:center; color:#fbbf24; font-weight:700; }
-.diwali-gift-modal { display:none; }.diwali-gift-modal.show { display:flex; }.diwali-reveal-card { position:relative; width:min(440px,calc(100vw - 2rem)); padding:2.2rem 1.5rem 1.5rem; overflow:hidden; border:1px solid rgba(251,191,36,.5); border-radius:24px; text-align:center; color:#fff7ed; background:radial-gradient(circle at 50% 0,rgba(245,158,11,.24),transparent 40%),#2b0b13; box-shadow:0 0 50px rgba(245,158,11,.2); transform:scale(.75) rotate(-4deg); opacity:0; }.diwali-reveal-card.gift-revealed { transform:scale(1) rotate(0); opacity:1; transition:.55s cubic-bezier(.2,1.3,.3,1); }.reveal-lights { color:#fbbf24; letter-spacing:1rem; }.reveal-gift { margin:.5rem 0; font-size:4rem; animation:diwali-flicker 1.8s ease-in-out infinite; }.diwali-reveal-card h2 { margin:.45rem 0; color:#fbbf24; font:800 1.45rem var(--font-display); }.diwali-reveal-card p { margin:0 auto 1rem; max-width:320px; color:#fbd5b5; font-size:.82rem; line-height:1.6; }
-.diwali-tool-widget .form-label { margin-top:.5rem; }.diwali-tool-canvas { display:block; width:min(100%,720px); height:auto; margin:1rem auto 0; border:1px solid rgba(245,158,11,.3); border-radius:14px; background:#170a12; }.diwali-tool-actions { display:flex; justify-content:center; margin-top:.7rem; }.color-input { width:52px; height:34px; padding:2px; border:1px solid var(--border); border-radius:8px; background:var(--glass2); }.diwali-countdown-widget { text-align:center; padding:2rem; }.countdown-diya { font-size:4rem; }.diwali-countdown { margin:1rem 0; color:#fbbf24; font:800 clamp(1.5rem,5vw,3rem) var(--font-display); }
-@keyframes diwali-glow{0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.15}50%{transform:translate(-50%,-50%) scale(1.15);opacity:.3}} @keyframes diwali-flicker{0%,100%{filter:drop-shadow(0 0 5px #fbbf24)}50%{filter:drop-shadow(0 0 17px #f97316)}} @keyframes diwali-float{0%,100%{transform:translateY(0);opacity:.35}50%{transform:translateY(-18px);opacity:1}}
-html.diwali-theme { --bg:#18090d; --bg2:#220b10; --card:#2a1015; --glass2:rgba(127,29,29,.24); --border:rgba(245,158,11,.18); --indigo:#f59e0b; --purple:#f97316; --grad-main:linear-gradient(135deg,#fbbf24,#f97316,#991b1b); }
-@media (max-width:900px){.diwali-tool-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.spin-card{grid-template-columns:1fr 110px 1fr;}}
-@media (max-width:650px){.diwali-home-section{min-height:0;align-items:flex-start;}.diwali-gift-stage{position:absolute;right:-20px;bottom:-12px;width:210px;transform:scale(.72);opacity:.9;}.diwali-copy{max-width:100%;padding-right:3rem}.diwali-page-hero{align-items:flex-start;flex-direction:column}.diwali-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.spin-card{grid-template-columns:1fr;text-align:center}.spin-wheel{grid-row:1;}.spin-result{min-height:24px}}
-@media (prefers-reduced-motion:reduce){.diwali-home-section *, .diwali-reveal-card,.spin-wheel{animation:none!important;transition:none!important}.diwali-gift-stage:hover{transform:none}}
 @media (max-width:700px) {
   .developer-showcase { align-items:flex-start; flex-wrap:wrap; gap:.8rem; padding:1rem; }.developer-copy { flex-basis:calc(100% - 68px); }.developer-link { margin-left:68px; }
   .site-footer { align-items:flex-start; flex-direction:column; gap:.7rem; margin-top:1.8rem; }
@@ -837,11 +841,14 @@ input[type="range"] { width: 100%; accent-color: var(--indigo); }
   background: var(--card); border: 1px solid var(--border);
   border-radius: var(--r-xl); padding: 1rem; margin-top: 1rem;
 }
+.ai-chat-toolbar { display: flex; align-items: center; gap: .6rem; margin-bottom: 10px; }
 .ai-model-select {
-  width: 100%; padding: 8px 12px; margin-bottom: 10px;
+  flex: 1; padding: 8px 12px;
   background: var(--glass2); border: 1px solid var(--border);
   color: var(--text); border-radius: var(--r-md); font-size: 0.82rem;
 }
+.ai-clear-btn, .ai-retry-btn { padding: .45rem .7rem; border: 1px solid var(--border); border-radius: var(--r-md); color: var(--text2); background: var(--glass2); font-size: .75rem; cursor: pointer; }
+.ai-clear-btn:hover, .ai-retry-btn:hover { border-color: var(--indigo); color: var(--indigo); }
 .ai-input-row { display: flex; gap: 10px; align-items: flex-end; }
 #ai-chat-input {
   flex: 1; padding: 12px 16px; background: var(--glass2);
@@ -1064,7 +1071,7 @@ input[type="range"] { width: 100%; accent-color: var(--indigo); }
   .tools-grid, .tools-grid-full { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .ai-banner { flex-direction: column; align-items: flex-start; }
   .ai-banner-right { width: 100%; justify-content: space-between; }
-  .navbar-search-wrap { display: none; }
+  .navbar-search-wrap { display: block; }
   .nav-ai-btn span { display: none; }
   .nav-ai-btn { padding: 8px; }
   .nav-login-btn { padding: 6px 10px; font-size: 0.78rem; }

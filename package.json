@@ -10,24 +10,45 @@
   "scripts": {
     "dev": "netlify dev",
     "build": "echo 'Static site — no build step required'",
+    "build:capacitor": "node scripts/prepare-capacitor-web.js",
     "lint": "npx eslint js/ --ext .js",
     "lint:fix": "npx eslint js/ --ext .js --fix",
     "test:render": "node scripts/render-smoke-test.js",
     "deploy": "netlify deploy --prod",
     "deploy:preview": "netlify deploy"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/status-bar": "^8.0.4"
+  },
   "devDependencies": {
+    "@capacitor/cli": "^8.6.0",
     "netlify-cli": "^17.0.0"
   },
   "_devNote": "jsdom + canvas are used only by scripts/render-smoke-test.js (npm run test:render) during development to verify every tool/game renders without errors — install them locally with 'npm install jsdom canvas --no-save' if you want to re-run that check. Not required to run or deploy the site.",
   "keywords": [
-    "toolhub", "online-tools", "ai-tools", "pdf-tools", "image-tools",
-    "video-tools", "audio-tools", "free-tools", "productivity", "pwa", "netlify"
+    "toolhub",
+    "online-tools",
+    "ai-tools",
+    "pdf-tools",
+    "image-tools",
+    "video-tools",
+    "audio-tools",
+    "free-tools",
+    "productivity",
+    "pwa",
+    "netlify"
   ],
   "author": "ToolHub 5D",
   "license": "MIT",
   "homepage": "https://toolhub.app",
-  "repository": { "type": "git", "url": "https://github.com/your-username/toolhub5d.git" },
-  "netlify": { "publish": ".", "functions": "netlify/functions" }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/toolhub5d.git"
+  },
+  "netlify": {
+    "publish": ".",
+    "functions": "netlify/functions"
+  }
 }

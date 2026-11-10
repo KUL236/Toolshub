@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ToolHub 5D</string>
+    <string name="title_activity_main">ToolHub 5D</string>
+    <string name="package_name">com.softwaretoolss.appp</string>
+    <string name="custom_url_scheme">com.softwaretoolss.appp</string>
+</resources>

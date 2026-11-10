@@ -4,77 +4,6 @@
    Desktop/tablet ≥769px: UNTOUCHED
    ══════════════════════════════════════════════════════ */
 
-/* ── MOBILE SEARCH BAR (below header) ── */
-#mobile-search-bar {
-  display: none;
-  position: fixed;
-  top: var(--navbar-h);
-  left: 0;
-  right: 0;
-  z-index: 999;
-  padding: 8px 12px;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-}
-#mobile-search-bar .search-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-#mobile-search-bar .search-icon {
-  position: absolute;
-  left: 12px;
-  font-size: 0.9rem;
-  pointer-events: none;
-  z-index: 1;
-}
-#mobile-search-input {
-  width: 100%;
-  padding: 10px 44px 10px 38px;
-  background: var(--glass2);
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-xl);
-  color: var(--text);
-  font-size: 0.9rem;
-  font-family: var(--font-body);
-  outline: none;
-  transition: var(--tr);
-}
-#mobile-search-input:focus {
-  border-color: var(--indigo);
-  background: var(--card);
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
-}
-#mobile-search-input::placeholder { color: var(--text3); }
-#mobile-voice-btn {
-  position: absolute;
-  right: 10px;
-  background: none;
-  color: var(--text3);
-  font-size: 1rem;
-  padding: 4px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-#mobile-voice-btn:hover { color: var(--indigo); }
-#mobile-search-dropdown {
-  display: none;
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  background: var(--card);
-  border: 1px solid var(--border-h);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  box-shadow: var(--sh-xl);
-  z-index: 2100;
-  max-height: 320px;
-  overflow-y: auto;
-}
-#mobile-search-dropdown.show { display: block; }
-
 /* ── FLOATING SI ASSISTANT BUTTON ── */
 #floating-si-btn {
   display: none;
@@ -121,17 +50,11 @@
   /* ── FLOATING SI BUTTON ── */
   #floating-si-btn { display: flex; }
 
-  /* ── SHOW MOBILE SEARCH BAR ── */
-  #mobile-search-bar { display: block; }
+  /* ── SEARCH BAR BELOW HEADER ── */
+  .navbar-search-wrap { display: block !important; }
+  #main-content { padding-top: calc(var(--navbar-h) + 60px) !important; }
 
-  /* ── ADJUST MAIN CONTENT TOP for mobile search bar ── */
-  :root { --mobile-search-h: 52px; }
-  #main-content {
-    padding-top: calc(var(--navbar-h) + var(--mobile-search-h)) !important;
-  }
-
-  /* ── NAVBAR: hide desktop search, hide AI btn text, hide sign in/up ── */
-  .navbar-search-wrap { display: none !important; }
+  /* ── NAVBAR: hide AI btn text, hide sign in/up ── */
   .nav-ai-btn { display: none !important; }
   .nav-auth-btns { display: none !important; }
 
@@ -250,7 +173,7 @@
   /* ── CATEGORY SCROLL — sticky + snap ── */
   .cat-scroll-wrap {
     position: sticky;
-    top: calc(var(--navbar-h) + var(--mobile-search-h));
+    top: calc(var(--navbar-h) + 60px);
     z-index: 90;
     background: var(--bg);
     margin-bottom: 1rem;
@@ -380,7 +303,7 @@
   .section-wrap { margin-bottom: 1.5rem; }
   .section-title { font-size: 1rem; }
 
-  /* ── SEARCH DROPDOWN in mobile-search-bar ── */
+  /* ── SEARCH DROPDOWN ── */
   .search-dropdown {
     left: 12px;
     right: 12px;
@@ -426,7 +349,7 @@
   }
 
   /* ── AI CHAT ── */
-  .ai-chat-wrap { height: calc(100vh - var(--navbar-h) - var(--mobile-search-h) - 2rem); }
+  .ai-chat-wrap { height: calc(100vh - var(--navbar-h) - 60px - 2rem); }
   .ai-quick-prompts { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .ai-quick-prompts::-webkit-scrollbar { display: none; }
   .ai-quick-prompts span {
@@ -638,6 +561,13 @@
   .ai-chat-input-wrap {
     padding-bottom: calc(1rem + env(safe-area-inset-bottom));
   }
+  #navbar {
+    padding-top: env(safe-area-inset-top);
+    height: calc(var(--navbar-h) + env(safe-area-inset-top));
+  }
+  #main-content {
+    padding-top: calc(var(--navbar-h) + 60px + env(safe-area-inset-top));
+  }
 }
 
 /* ════════════════════════════════════════
@@ -684,7 +614,7 @@
   input, select, textarea {
     font-size: 16px !important; /* prevents iOS auto-zoom */
   }
-  #mobile-search-input { font-size: 16px !important; }
+  #search-input { font-size: 16px !important; }
 
   /* Increase line height for readability */
   .hero-subtitle, .page-subheading { line-height: 1.65; }

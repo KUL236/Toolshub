@@ -228,12 +228,6 @@ const ALL_TOOLS = [
   { id:'lorem-ipsum-gen', name:'Lorem Ipsum Generator', icon:'📝', cat:'developer', desc:'Generate placeholder text for mockups & designs.' },
   { id:'color-contrast-checker', name:'Color Contrast Checker', icon:'🎨', cat:'developer', desc:'Check WCAG contrast ratio between two colors for accessibility.' },
   { id:'typing-speed-test', name:'Typing Speed Test', icon:'⌨️', cat:'fun', desc:'Test your typing speed in WPM and accuracy.' },
-  // ── DIWALI SPECIAL ──
-  { id:'diwali-greeting-card', name:'Diwali Greeting Card', icon:'💌', cat:'diwali', desc:'Create and download a personalized Diwali greeting card.' },
-  { id:'rangoli-creator', name:'Rangoli Design Creator', icon:'🎨', cat:'diwali', desc:'Generate a colorful rangoli pattern and save it as an image.' },
-  { id:'diya-decoration', name:'Diya Decoration', icon:'🪔', cat:'diwali', desc:'Design a glowing diya scene with your own colors.' },
-  { id:'diwali-countdown', name:'Diwali Countdown', icon:'⏳', cat:'diwali', desc:'See the live countdown to the next Diwali celebration.' },
-  { id:'festive-wallpaper', name:'Festive Wallpaper Generator', icon:'🌟', cat:'diwali', desc:'Create a festive wallpaper for your phone or desktop.' },
 ];
 
 // Legacy compatibility  
@@ -251,7 +245,6 @@ const CATEGORIES = [
   { id:'fun',       label:'Fun & Viral',  icon:'🎉', color:'#a78bfa' },
   { id:'video',     label:'Video Tools',  icon:'🎬', color:'#f43f5e' },
   { id:'audio',     label:'Audio Tools',  icon:'🎧', color:'#0ea5e9' },
-  { id:'diwali',    label:'Diwali Special', icon:'🪔', color:'#f59e0b' },
 ];
 
 const GAMES_DATA = [

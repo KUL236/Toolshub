@@ -146,14 +146,6 @@
     <div class="splash-center">🛠️</div>
   </div>
 
-  <div class="diwali-welcome" aria-label="Happy Diwali">
-    <span class="firework firework-left">✦</span>
-    <span class="firework firework-right">✦</span>
-    <span class="diwali-welcome-diya">🪔</span>
-    <strong>Happy Diwali</strong>
-    <span>✨ May your world shine brighter ✨</span>
-  </div>
-
   <div class="splash-title">ToolHub <span style="color:#38bdf8">5D</span></div>
   <div class="splash-tagline">200+ Tools. One Clean Workspace.</div>
   <div class="splash-sub">Convert. Calculate. Generate. Play. Achieve.</div>
@@ -248,10 +240,6 @@
       <span class="si-icon">🎮</span><span class="si-label">Games</span>
       <span class="si-badge hot">HOT</span>
     </button>
-    <button class="sidebar-item diwali-nav-item" data-page="diwali" onclick="navigate('diwali')">
-      <span class="si-icon">🪔</span><span class="si-label">Diwali Special</span>
-      <span class="si-badge diwali-badge">SPECIAL</span>
-    </button>
     <button class="sidebar-item" data-page="fun-viral" onclick="navigate('fun-viral')">
       <span class="si-icon">🎉</span><span class="si-label">Fun & Viral</span>
     </button>
@@ -324,15 +312,6 @@
     </a>
   </div>
 
-  <div class="navbar-search-wrap" role="search">
-    <div class="search-container">
-      <span class="search-icon">🔍</span>
-      <input type="search" id="search-input" placeholder="Search 200+ tools, categories..." autocomplete="off" aria-label="Search tools">
-      <button class="voice-btn" id="voice-btn" aria-label="Voice search" title="Voice search">🎙️</button>
-      <div id="search-dropdown" class="search-dropdown" role="listbox"></div>
-    </div>
-  </div>
-
   <div class="navbar-actions">
     <button class="nav-ai-btn" onclick="navigate('ai-assistant')" aria-label="Smart Assistant">
       <span>🤖</span> Smart Assistant
@@ -351,13 +330,13 @@
   </div>
 </header>
 
-<!-- MOBILE SEARCH BAR (below header, mobile only) -->
-<div id="mobile-search-bar" role="search" aria-label="Mobile search">
-  <div class="search-container" style="position:relative">
+<!-- SEARCH BAR (below header on every screen size) -->
+<div class="navbar-search-wrap" role="search" aria-label="Search ToolHub">
+  <div class="search-container">
     <span class="search-icon">🔍</span>
-    <input type="search" id="mobile-search-input" placeholder="Search 200+ tools, games..." autocomplete="off" aria-label="Search tools">
-    <button id="mobile-voice-btn" aria-label="Voice search" title="Voice search">🎙️</button>
-    <div id="mobile-search-dropdown" class="search-dropdown" role="listbox"></div>
+    <input type="search" id="search-input" placeholder="Search 200+ tools, games..." autocomplete="off" aria-label="Search tools">
+    <button class="voice-btn" id="voice-btn" aria-label="Voice search" title="Voice search">🎙️</button>
+    <div id="search-dropdown" class="search-dropdown" role="listbox"></div>
   </div>
 </div>
 
@@ -512,27 +491,8 @@
         <button class="cat-chip" onclick="navigate('health')">❤️ Health</button>
         <button class="cat-chip" onclick="navigate('games')">🎮 Games</button>
         <button class="cat-chip" onclick="navigate('fun-viral')">🎉 Fun</button>
-        <button class="cat-chip diwali-chip" onclick="navigate('diwali')">🪔 Diwali</button>
       </div>
     </div>
-
-    <section class="diwali-home-section" aria-labelledby="diwali-home-title">
-      <div class="diwali-sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="diwali-copy">
-        <span class="diwali-eyebrow">✨ DIWALI SPECIAL · 2026</span>
-        <h2 id="diwali-home-title">A Little Diwali Surprise<br><span>From ToolHub 5D</span></h2>
-        <p>Light up your digital celebrations with greetings, rangoli, diyas and a little surprise.</p>
-        <div class="diwali-actions">
-          <button class="diwali-primary-btn" onclick="openDiwaliGift()">🎁 Open Your Gift</button>
-          <button class="diwali-ghost-btn" onclick="navigate('diwali')">Explore festive tools →</button>
-        </div>
-      </div>
-      <button class="diwali-gift-stage" onclick="openDiwaliGift()" aria-label="Open your Diwali gift">
-        <span class="diya diya-one">🪔</span><span class="diya diya-two">🪔</span>
-        <span class="gift-glow"></span><span class="gift-lid"></span><span class="gift-box"><b>✦</b></span><span class="gift-ribbon"></span>
-        <small>Tap to open</small>
-      </button>
-    </section>
 
     <!-- POPULAR TOOLS -->
     <div class="section-wrap">
@@ -763,20 +723,6 @@
     <div class="tools-grid-full" id="fun-tools-grid"></div>
   </section>
 
-  <!-- DIWALI SPECIAL PAGE -->
-  <section id="page-diwali" class="page diwali-page">
-    <div class="diwali-page-hero">
-      <div><span class="diwali-eyebrow">🪔 TOOLHUB 5D FESTIVE STUDIO</span><h1 class="page-heading">Diwali Special</h1><p class="page-subheading">Create, decorate and share your light. Everything here runs in your browser.</p></div>
-      <button class="diwali-toggle" onclick="toggleDiwaliTheme()" aria-pressed="false">✨ Festive glow</button>
-    </div>
-    <div class="diwali-tool-grid" id="diwali-tools-grid"></div>
-    <div class="spin-card">
-      <div><span class="diwali-eyebrow">OPTIONAL DAILY SURPRISE</span><h2>Spin & Win</h2><p>One local spin per day. Rewards are digital surprises only—no payment or premium claims.</p></div>
-      <button class="spin-wheel" id="diwali-spin-btn" onclick="spinDiwali()" aria-label="Spin for a Diwali surprise">🪔<span>SPIN</span></button>
-      <div id="diwali-spin-result" class="spin-result" aria-live="polite"></div>
-    </div>
-  </section>
-
   <!-- FAVORITES PAGE -->
   <section id="page-favorites" class="page">
     <div class="page-header-row">
@@ -866,10 +812,13 @@
         </div>
       </div>
       <div class="ai-chat-input-wrap">
-        <select class="ai-model-select" id="ai-model">
-          <option value="openai/gpt-oss-120b" selected>GPT-OSS 120B (Best)</option>
-          <option value="openai/gpt-oss-20b">GPT-OSS 20B (Fast)</option>
-        </select>
+        <div class="ai-chat-toolbar">
+          <select class="ai-model-select" id="ai-model">
+            <option value="openai/gpt-oss-120b" selected>GPT-OSS 120B (Best)</option>
+            <option value="openai/gpt-oss-20b">GPT-OSS 20B (Fast)</option>
+          </select>
+          <button class="ai-clear-btn" type="button" onclick="clearAIChat()">Clear chat</button>
+        </div>
         <div class="ai-input-row">
           <textarea id="ai-chat-input" placeholder="Ask AI anything... (Shift+Enter for new line)" rows="1" onkeydown="aiChatKeydown(event)"></textarea>
           <button class="ai-send-btn" onclick="sendAIChat()" id="ai-send-btn">✈️</button>
@@ -946,17 +895,6 @@
   </div>
 </div>
 
-<!-- DIWALI GIFT MODAL -->
-<div id="diwali-gift-modal" class="modal-overlay diwali-gift-modal" onclick="closeDiwaliGift()">
-  <div class="diwali-reveal-card" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeDiwaliGift()">✕</button>
-    <div class="reveal-lights">✦ ✧ ✦</div><div class="reveal-gift">🎁</div>
-    <span class="diwali-eyebrow">YOUR DIGITAL SURPRISE</span>
-    <h2 id="diwali-gift-title">Happy Diwali!</h2><p id="diwali-gift-text">May your year be bright, peaceful and full of good ideas.</p>
-    <button class="diwali-primary-btn" onclick="downloadDiwaliGift()">⬇ Save surprise</button>
-  </div>
-</div>
-
 <!-- PWA INSTALL BANNER -->
 <div id="pwa-banner" class="pwa-banner" style="display:none">
   <div class="pwa-banner-content">
@@ -977,7 +915,6 @@
 <script src="/js/supabase-client.js?v=8"></script>
 <script src="/js/auth.js?v=8"></script>
 <script src="/js/tools.js?v=8" defer></script>
-<script src="/js/diwali.js?v=8" defer></script>
 <script src="/js/games.js?v=8" defer></script>
 <script src="/js/games-premium.js?v=8" defer></script>
 <script src="/js/games-new.js?v=8" defer></script>

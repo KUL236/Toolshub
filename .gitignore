@@ -1,5 +1,9 @@
 # Dependencies
 node_modules/
+www/
+android/.gradle/
+android/build/
+android/app/build/
 
 # Environment secrets — NEVER commit these
 .env

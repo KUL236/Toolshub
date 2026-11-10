@@ -123,52 +123,6 @@
   padding: 0 1rem;
 }
 
-/* Festive greeting shown during the existing loading screen. */
-.diwali-welcome {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .18rem;
-  margin: -.25rem 0 1rem;
-  color: #fff7ed;
-  text-align: center;
-  z-index: 2;
-}
-.diwali-welcome strong {
-  font-family: Georgia, serif;
-  font-size: clamp(1.45rem, 6vw, 2rem);
-  letter-spacing: .04em;
-  color: #fbbf24;
-  text-shadow: 0 0 10px rgba(251,191,36,.75), 0 0 28px rgba(249,115,22,.45);
-  animation: diwali-welcome-glow 2s ease-in-out infinite;
-}
-.diwali-welcome > span:last-child {
-  color: #fed7aa;
-  font-size: .68rem;
-  letter-spacing: .08em;
-}
-.diwali-welcome-diya {
-  font-size: 1.65rem;
-  line-height: 1;
-  filter: drop-shadow(0 0 9px #fbbf24);
-  animation: diwali-diya-flicker 1.5s ease-in-out infinite;
-}
-.firework {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  color: #fbbf24;
-  font-size: 1.1rem;
-  text-shadow: 0 -18px #fbbf24, 0 18px #f97316, -18px 0 #fde68a, 18px 0 #f97316, -13px -13px #fb7185, 13px 13px #fde68a, 13px -13px #fbbf24, -13px 13px #fb7185;
-  animation: firework-burst 1.8s ease-out infinite;
-}
-.firework-left { left: 7%; top: 28%; }
-.firework-right { right: 7%; top: 22%; animation-delay: .85s; color: #fb7185; }
-@keyframes diwali-welcome-glow { 0%,100% { transform:scale(1); } 50% { transform:scale(1.04); text-shadow:0 0 16px rgba(251,191,36,.95),0 0 34px rgba(249,115,22,.55); } }
-@keyframes diwali-diya-flicker { 0%,100% { transform:scale(1); } 50% { transform:scale(1.1) rotate(-3deg); } }
-@keyframes firework-burst { 0%,100% { opacity:.15; transform:scale(.3); } 35% { opacity:1; transform:scale(1); } 70% { opacity:.6; transform:scale(1.15); } }
 
 .splash-features {
   display: flex;
@@ -239,10 +193,8 @@
     to   { transform: rotate(calc(var(--angle) + 360deg)) translate(112px) rotate(calc(-1 * (var(--angle) + 360deg))); }
   }
   .splash-features { gap: 1.1rem; }
-  .diwali-welcome { margin-bottom:.75rem; }
-  .firework { transform:scale(.75); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .splash-ring, .splash-icon, .splash-center, .diwali-welcome strong, .diwali-welcome-diya, .firework { animation: none !important; }
+  .splash-ring, .splash-icon, .splash-center { animation: none !important; }
 }

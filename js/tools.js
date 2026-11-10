@@ -165,11 +165,6 @@ function renderToolPage(toolOrId) {
     'wheel-spinner': renderWheelSpinner,
     'truth-dare': renderTruthDareGame,
     'random-num-gen': renderRandomNum,
-    'diwali-greeting-card': renderDiwaliGreetingCard,
-    'rangoli-creator': renderRangoliCreator,
-    'diya-decoration': renderDiyaDecoration,
-    'diwali-countdown': renderDiwaliCountdown,
-    'festive-wallpaper': renderFestiveWallpaper,
     // AI Tools
     'ai-resume-analyzer': () => renderAITool('resume-analyzer'),
     'ai-resume-builder': () => renderAITool('resume-builder'),

@@ -13,13 +13,13 @@ const App = {
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
+  initNativeStatusBar();
   applyTheme();
   initParticles();
   initSearch();
   initPWA();
   renderHomePage();
   renderAllCategoryGrids();
-  renderDiwaliPage();
   renderFeedbackForm('feedback');
   updateFavCount();
   renderRecentSection();
@@ -31,6 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 10);
   });
+
+  function initNativeStatusBar() {
+    const statusBar = window.Capacitor?.Plugins?.StatusBar;
+    if (!statusBar) return;
+    document.documentElement.classList.add('native-app');
+    Promise.all([
+      statusBar.setOverlaysWebView({ overlay: false }),
+      statusBar.setStyle({ style: 'DARK' }),
+      statusBar.setBackgroundColor({ color: '#0a0a1a' }),
+    ]).catch((error) => {
+      console.error('Unable to configure the native status bar:', error);
+    });
+  }
 });
 
 // ── NAVIGATION ──
@@ -304,7 +317,9 @@ function initSearch() {
   input.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       const q = input.value.trim().toLowerCase();
-      const first = ALL_TOOLS.find(t => t.name.toLowerCase().includes(q) || t.desc?.toLowerCase().includes(q));
+      const first = [...ALL_TOOLS, ...GAMES_DATA].find(t =>
+        t.name.toLowerCase().includes(q) || t.desc?.toLowerCase().includes(q) || t.cat?.includes(q)
+      );
       if (first) { handleSearchSelect(first.id); dropdown.classList.remove('show'); }
     }
     if (e.key === 'Escape') { dropdown.classList.remove('show'); input.blur(); }
@@ -753,55 +768,114 @@ function copyToClipboard(text, successMsg = 'Copied!') {
 }
 
 // ── AI CHAT ──
-async function sendAIChat() {
-  const input = document.getElementById('ai-chat-input');
-  const msg = input?.value?.trim();
-  if (!msg) return;
-  const model = document.getElementById('ai-model')?.value || 'openai/gpt-oss-120b';
-  input.value = '';
-  input.style.height = 'auto';
+const aiChatState = {
+  history: [],
+  lastFailedMessage: '',
+  loading: false,
+};
 
+function escapeAIHtml(value) {
+  return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function formatAIReply(value) {
+  return escapeAIHtml(value)
+    .replace(/\n/g, '<br>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`(.*?)`/g, '<code style="background:var(--glass2);padding:1px 4px;border-radius:3px">$1</code>');
+}
+
+function addAIMessage(role, text, options = {}) {
+  const messagesEl = document.getElementById('ai-chat-messages');
+  if (!messagesEl) return;
+  const message = document.createElement('div');
+  message.className = `ai-message ${role === 'user' ? 'user-msg' : 'ai-msg'}`;
+  const avatar = document.createElement('div');
+  avatar.className = `ai-avatar ${role === 'user' ? 'user-avatar' : ''}`;
+  avatar.textContent = role === 'user' ? '👤' : '🤖';
+  const bubble = document.createElement('div');
+  bubble.className = `ai-bubble ${role === 'user' ? 'user-bubble' : ''}`;
+  if (options.html) bubble.innerHTML = text;
+  else bubble.textContent = text;
+  message.append(avatar, bubble);
+  messagesEl.appendChild(message);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function clearAIChat() {
+  aiChatState.history = [];
+  aiChatState.lastFailedMessage = '';
+  const messagesEl = document.getElementById('ai-chat-messages');
+  if (!messagesEl) return;
+  messagesEl.innerHTML = '';
+  addAIMessage('assistant', "Hello! I'm ToolHub 5D AI Assistant. I can help you find and use ToolHub tools, answer coding questions, and provide technical support.");
+}
+
+function retryAIChat() {
+  if (aiChatState.lastFailedMessage && !aiChatState.loading) {
+    const message = aiChatState.lastFailedMessage;
+    aiChatState.lastFailedMessage = '';
+    sendAIChat(message, true);
+  }
+}
+
+function getAIChatEndpoint() {
+  return window.Capacitor
+    ? 'https://softwaretoolss.netlify.app/.netlify/functions/chat'
+    : '/.netlify/functions/chat';
+}
+
+async function sendAIChat(messageOverride = '', isRetry = false) {
+  const input = document.getElementById('ai-chat-input');
+  const msg = (messageOverride || input?.value || '').trim();
+  if (!msg) return;
+  if (aiChatState.loading) return;
+  const model = document.getElementById('ai-model')?.value || 'openai/gpt-oss-120b';
   const messagesEl = document.getElementById('ai-chat-messages');
   if (!messagesEl) return;
 
-  // User message
-  messagesEl.innerHTML += `<div class="ai-message user-msg"><div class="ai-avatar user-avatar">👤</div><div class="ai-bubble user-bubble">${msg.replace(/</g, '&lt;')}</div></div>`;
+  if (!isRetry) {
+    input.value = '';
+    input.style.height = 'auto';
+    addAIMessage('user', msg);
+    aiChatState.history.push({ role: 'user', content: msg });
+  }
 
   // Typing indicator
   const typingId = 'typing-' + Date.now();
-  messagesEl.innerHTML += `<div class="ai-message ai-msg" id="${typingId}"><div class="ai-avatar">🤖</div><div class="ai-bubble"><div class="ai-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;
+  const typing = document.createElement('div');
+  typing.className = 'ai-message ai-msg';
+  typing.id = typingId;
+  typing.innerHTML = '<div class="ai-avatar">🤖</div><div class="ai-bubble"><div class="ai-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>';
+  messagesEl.appendChild(typing);
   messagesEl.scrollTop = messagesEl.scrollHeight;
 
   const btn = document.getElementById('ai-send-btn');
-  if (btn) btn.disabled = true;
+  aiChatState.loading = true;
+  if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
 
   try {
-    const res = await fetch('/.netlify/functions/groq-chat', {
+    const res = await fetch(getAIChatEndpoint(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: msg, model }),
+      body: JSON.stringify({ message: msg, model, history: aiChatState.history.slice(-20, -1) }),
       signal: AbortSignal.timeout(25000),
     });
-    const data = await res.json();
-    const reply = res.ok
-      ? (data.reply || 'Sorry, I could not generate a response.')
-      : (data.error || 'AI service error. Please try again.');
+    const data = await res.json().catch(() => ({}));
     document.getElementById(typingId)?.remove();
-    const safeReply = reply
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/\n/g,'<br>')
-      .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-      .replace(/`(.*?)`/g,'<code style="background:var(--glass2);padding:1px 4px;border-radius:3px">$1</code>');
-    messagesEl.innerHTML += `<div class="ai-message ai-msg"><div class="ai-avatar">🤖</div><div class="ai-bubble">${safeReply}</div></div>`;
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    if (!res.ok) throw new Error(data.error || 'AI service error. Please try again.');
+    const reply = typeof data.reply === 'string' && data.reply.trim() ? data.reply : 'Sorry, I could not generate a response.';
+    aiChatState.history.push({ role: 'assistant', content: reply });
+    aiChatState.lastFailedMessage = '';
+    addAIMessage('assistant', formatAIReply(reply), { html: true });
   } catch(e) {
     document.getElementById(typingId)?.remove();
-    const errMsg = e.name === 'TimeoutError' || e.name === 'AbortError'
-      ? '⏱️ Request timed out. Please try again.'
-      : '❌ Could not connect to AI. Check your internet connection.';
-    messagesEl.innerHTML += `<div class="ai-message ai-msg"><div class="ai-avatar">🤖</div><div class="ai-bubble" style="color:var(--red)">${errMsg}</div></div>`;
+    aiChatState.lastFailedMessage = msg;
+    const errorText = e.name === 'TimeoutError' || e.name === 'AbortError' ? '⏱️ Request timed out.' : `❌ ${e.message}`;
+    addAIMessage('assistant', `${escapeAIHtml(errorText)} <button class="ai-retry-btn" type="button" onclick="retryAIChat()">Retry</button>`, { html: true });
   }
-  if (btn) btn.disabled = false;
+  aiChatState.loading = false;
+  if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
@@ -933,70 +1007,6 @@ function filterCat(cat) {
 // ══════════════════════════════════════════════
 
 // ── MOBILE SEARCH BAR INIT ──
-function initMobileSearch() {
-  const mInput = document.getElementById('mobile-search-input');
-  const mDropdown = document.getElementById('mobile-search-dropdown');
-  const mVoice = document.getElementById('mobile-voice-btn');
-  if (!mInput || !mDropdown) return;
-
-  mInput.addEventListener('input', () => {
-    const q = mInput.value.trim().toLowerCase();
-    if (!q) { mDropdown.classList.remove('show'); return; }
-    const results = [...ALL_TOOLS, ...GAMES_DATA].filter(t =>
-      t.name.toLowerCase().includes(q) || t.desc?.toLowerCase().includes(q) || t.cat?.includes(q)
-    ).slice(0, 8);
-    mDropdown.innerHTML = results.length
-      ? results.map(t => `<div class="search-result-item" onclick="handleMobileSearchSelect('${t.id}')">
-          <span class="sri-icon">${t.icon || '🎮'}</span>
-          <div class="sri-info"><div class="sri-name">${t.name}</div><div class="sri-cat">${t.cat || 'game'}</div></div>
-        </div>`).join('')
-      : '<div class="no-results">🔍 No tools found</div>';
-    mDropdown.classList.add('show');
-  });
-
-  mInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      const q = mInput.value.trim().toLowerCase();
-      const first = ALL_TOOLS.find(t => t.name.toLowerCase().includes(q) || t.desc?.toLowerCase().includes(q));
-      if (first) { handleMobileSearchSelect(first.id); mDropdown.classList.remove('show'); }
-    }
-    if (e.key === 'Escape') { mDropdown.classList.remove('show'); mInput.blur(); }
-  });
-
-  document.addEventListener('click', e => {
-    if (!e.target.closest('#mobile-search-bar')) mDropdown.classList.remove('show');
-  });
-
-  // Voice search for mobile
-  if (mVoice) {
-    mVoice.addEventListener('click', () => {
-      if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-        showToast('Voice not supported in this browser', 'warning'); return;
-      }
-      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const rec = new SR();
-      rec.lang = 'en-IN'; rec.interimResults = false;
-      mVoice.classList.add('active');
-      rec.start();
-      rec.onresult = e => {
-        mInput.value = e.results[0][0].transcript;
-        mInput.dispatchEvent(new Event('input'));
-      };
-      rec.onend = () => mVoice.classList.remove('active');
-      rec.onerror = () => mVoice.classList.remove('active');
-    });
-  }
-}
-
-function handleMobileSearchSelect(id) {
-  document.getElementById('mobile-search-dropdown')?.classList.remove('show');
-  const mInput = document.getElementById('mobile-search-input');
-  if (mInput) mInput.value = '';
-  const isGame = GAMES_DATA.find(g => g.id === id);
-  if (isGame) openGame(id);
-  else openTool(id);
-}
-
 // ── LAZY SECTION OBSERVER ──
 function initLazySections() {
   const sections = document.querySelectorAll('.section-wrap, .stats-bar, .ai-banner, .double-grid');
@@ -1077,7 +1087,6 @@ function initSLBoardFix() {
 document.addEventListener('DOMContentLoaded', () => {
   // Run after a short delay so ALL_TOOLS is guaranteed loaded
   setTimeout(() => {
-    initMobileSearch();
     initLazySections();
     initLudoPortraitFix();
     initSnakeCanvasFix();

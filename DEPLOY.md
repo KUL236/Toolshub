@@ -36,7 +36,31 @@ Add these 4 variables (get values from your accounts):
 
 Then click **Trigger deploy → Deploy site**
 
-## Step 4 — Test APIs
+## Step 4 — Test the chatbot
+
+The chatbot uses the secure server-side function:
+
+```text
+POST https://YOUR-SITE.netlify.app/.netlify/functions/chat
+Content-Type: application/json
+
+{"message":"Which PDF tools are available?","model":"openai/gpt-oss-20b","history":[]}
+```
+
+The browser and Capacitor Android app never receive `GROQ_API_KEY`. The Android app uses the deployed site URL for this function rather than localhost.
+
+## Step 5 — Sync and build Android
+
+```bash
+npm run build:capacitor
+npx cap sync android
+cd android
+./gradlew assembleDebug
+```
+
+Open the native project with `npx cap open android`.
+
+## Step 6 — Test other APIs
 
 Visit: `https://YOUR-SITE.netlify.app/.netlify/functions/test-apis`
 
