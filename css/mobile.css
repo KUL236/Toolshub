@@ -53,6 +53,8 @@
   /* ── SEARCH BAR BELOW HEADER ── */
   .navbar-search-wrap { display: block !important; }
   #main-content { padding-top: calc(var(--navbar-h) + 60px) !important; }
+  .home-page .navbar-search-wrap { display: none !important; }
+  .home-page #main-content { padding-top: var(--navbar-h) !important; }
 
   /* ── NAVBAR: hide AI btn text, hide sign in/up ── */
   .nav-ai-btn { display: none !important; }

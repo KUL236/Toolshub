@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── NAVIGATION ──
 function navigate(page, data) {
+  document.documentElement.classList.toggle('home-page', page === 'home');
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
 
@@ -130,6 +131,7 @@ function closeSidebar() {
 
 // Sidebar search
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.classList.add('home-page');
   document.getElementById('sidebar-search')?.addEventListener('input', e => {
     const q = e.target.value.toLowerCase();
     document.querySelectorAll('.sidebar-item').forEach(el => {
