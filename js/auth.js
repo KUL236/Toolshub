@@ -33,6 +33,62 @@ function ensureSupabase(maxWaitMs) {
 
 // ── AUTH STATE ───────────────────────────────────────────────────────────────
 var Auth = { user: null, session: null };
+var NATIVE_AUTH_REDIRECT = 'toolhub://auth-callback';
+
+function isNativeApp() {
+  return !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+}
+
+function getAuthRedirectUrl() {
+  return isNativeApp() ? NATIVE_AUTH_REDIRECT : window.location.origin + '/';
+}
+
+async function handleNativeAuthUrl(url) {
+  if (!url || !window.supabaseClient) return;
+  var parsed;
+  try {
+    parsed = new URL(url);
+  } catch (error) {
+    console.error('[ToolHub] Invalid native auth callback URL:', error.message);
+    return;
+  }
+
+  try {
+    var code = parsed.searchParams.get('code');
+    if (code) {
+      var codeResult = await window.supabaseClient.auth.exchangeCodeForSession(code);
+      if (codeResult.error) throw codeResult.error;
+      return;
+    }
+
+    var hash = new URLSearchParams((parsed.hash || '').replace(/^#/, ''));
+    var accessToken = hash.get('access_token');
+    var refreshToken = hash.get('refresh_token');
+    if (!accessToken || !refreshToken) return;
+
+    var sessionResult = await window.supabaseClient.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken
+    });
+    if (sessionResult.error) throw sessionResult.error;
+  } catch (error) {
+    console.error('[ToolHub] Native auth callback failed:', error.message);
+    showAuthError('Could not complete sign-in. Please try again.');
+  }
+}
+
+function initNativeAuthCallback() {
+  if (!isNativeApp() || !window.Capacitor.Plugins || !window.Capacitor.Plugins.App) return;
+  var appPlugin = window.Capacitor.Plugins.App;
+  appPlugin.addListener('appUrlOpen', function (event) {
+    handleNativeAuthUrl(event && event.url);
+  });
+  appPlugin.getLaunchUrl().then(function (result) {
+    if (result && result.url) handleNativeAuthUrl(result.url);
+  }).catch(function (error) {
+    console.error('[ToolHub] Could not read native auth callback:', error.message);
+  });
+}
 
 // ── INACTIVITY AUTO-LOGOUT ───────────────────────────────────────────────────
 var INACTIVITY_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
@@ -474,7 +530,7 @@ async function signInWithGoogle() {
     var client = await ensureSupabase();
     // Use explicit redirectTo so it works on both localhost and production.
     // Supabase needs the *exact* URL registered in your Supabase OAuth settings.
-    var redirectTo = window.location.origin + '/';
+    var redirectTo = getAuthRedirectUrl();
     var result = await client.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -548,7 +604,7 @@ async function signUpWithEmail() {
       password: password,
       options: {
         data: { full_name: name || null },
-        emailRedirectTo: window.location.origin + '/',
+        emailRedirectTo: getAuthRedirectUrl(),
       },
     });
     if (result.error) {
@@ -595,7 +651,7 @@ async function resetPassword() {
     var client = await ensureSupabase();
     // redirectTo must be a URL allowed in Supabase Dashboard → Auth → URL Configuration → Redirect URLs
     var result = await client.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + '/?reset=1',
+      redirectTo: getAuthRedirectUrl() + '?reset=1',
     });
     if (result.error) {
       showAuthError(_friendlyAuthError(result.error));

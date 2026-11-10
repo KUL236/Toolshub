@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRecentSection();
   renderFavSection();
   initAuth();
+  initNativeAuthCallback();
   handleURLHash();
   setTimeout(renderAdminPage, 500);
   // Scroll navbar effect
