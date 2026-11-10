@@ -286,7 +286,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: non
   top: var(--navbar-h);
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 1001;
   padding: 8px max(12px, env(safe-area-inset-left)) 8px max(12px, env(safe-area-inset-right));
   background: var(--bg2);
   border-bottom: 1px solid var(--border);

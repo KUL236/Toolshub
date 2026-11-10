@@ -33,12 +33,12 @@
     try {
       var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       return {
-        palette: palettes.some(function (item) { return item.id === saved.palette; }) ? saved.palette : 'blue',
+        palette: palettes.some(function (item) { return item.id === saved.palette; }) ? (saved.palette === 'blue' ? 'orange' : saved.palette) : 'orange',
         mode: ['light', 'dark', 'system'].includes(saved.mode) ? saved.mode : 'dark',
         custom: saved.custom && typeof saved.custom === 'object' ? saved.custom : null
       };
     } catch (error) {
-      return { palette: 'blue', mode: 'dark', custom: null };
+      return { palette: 'orange', mode: 'dark', custom: null };
     }
   }
 
@@ -136,7 +136,7 @@
       apply();
     },
     reset: function () {
-      this.state = { palette: 'blue', mode: 'dark', custom: null };
+      this.state = { palette: 'orange', mode: 'dark', custom: null };
       save();
       apply();
     },
