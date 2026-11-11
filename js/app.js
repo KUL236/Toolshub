@@ -11,8 +11,73 @@ const App = {
   internetEnabled: true,
 };
 
+function getFunctionEndpoint(name) {
+  const path = `/.netlify/functions/${name}`;
+  return window.Capacitor?.isNativePlatform?.()
+    ? `https://softwaretoolss.com${path}`
+    : path;
+}
+
+async function saveNativeDownload(link) {
+  if (!window.Capacitor?.isNativePlatform?.()) return false;
+  const fileSystem = window.Capacitor.Plugins?.Filesystem;
+  if (!fileSystem) {
+    console.error('[ToolHub] Native file download plugin is unavailable.');
+    return false;
+  }
+
+  const requestedName = link.getAttribute('download') || 'toolhub-download';
+  const fileName = requestedName.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_').slice(0, 120) || 'toolhub-download';
+  try {
+    const response = await fetch(link.href);
+    if (!response.ok) throw new Error(`Download request failed (${response.status})`);
+    const blob = await response.blob();
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('Could not read the generated file.'));
+      reader.readAsDataURL(blob);
+    });
+    const comma = dataUrl.indexOf(',');
+    if (comma < 0) throw new Error('Generated file data is invalid.');
+    await fileSystem.writeFile({
+      path: fileName,
+      data: dataUrl.slice(comma + 1),
+      directory: 'DOCUMENTS',
+      recursive: true,
+    });
+    showToast(`✅ Saved ${fileName}`, 'success');
+    return true;
+  } catch (error) {
+    console.error('[ToolHub] Native download failed:', error);
+    showToast('Download failed. Please try again.', 'warning');
+    return false;
+  }
+}
+
+function initNativeDownloads() {
+  if (!window.Capacitor?.isNativePlatform?.()) return;
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[download]');
+    if (!link || !link.href) return;
+    event.preventDefault();
+    event.stopPropagation();
+    saveNativeDownload(link);
+  }, true);
+
+  const anchorClick = HTMLAnchorElement.prototype.click;
+  HTMLAnchorElement.prototype.click = function () {
+    if (this.hasAttribute('download') && this.href) {
+      saveNativeDownload(this);
+      return;
+    }
+    anchorClick.call(this);
+  };
+}
+
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
+  initNativeDownloads();
   initNativeStatusBar();
   applyTheme();
   initParticles();
@@ -823,9 +888,7 @@ function retryAIChat() {
 }
 
 function getAIChatEndpoint() {
-  return window.Capacitor
-    ? 'https://softwaretoolss.netlify.app/.netlify/functions/chat'
-    : '/.netlify/functions/chat';
+  return getFunctionEndpoint('chat');
 }
 
 async function sendAIChat(messageOverride = '', isRetry = false) {

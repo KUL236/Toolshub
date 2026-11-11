@@ -8,8 +8,8 @@
 #floating-si-btn {
   display: none;
   position: fixed;
-  bottom: 24px;
-  right: 20px;
+  bottom: 84px;
+  right: 16px;
   z-index: 1500;
   width: 56px;
   height: 56px;
@@ -171,7 +171,7 @@
   /* ── CATEGORY SCROLL — sticky + snap ── */
   .cat-scroll-wrap {
     position: sticky;
-    top: calc(var(--navbar-h) + 60px);
+    top: calc(var(--navbar-h) + env(safe-area-inset-top));
     z-index: 90;
     background: var(--bg);
     margin-bottom: 1rem;
@@ -500,7 +500,7 @@
   #ludo-setup button { min-height: 44px; font-size: 0.9rem !important; padding: 8px 18px !important; }
 
   /* ── FLOATING SI ── */
-  #floating-si-btn { width: 52px; height: 52px; font-size: 1.3rem; bottom: 20px; right: 16px; }
+  #floating-si-btn { width: 52px; height: 52px; font-size: 1.3rem; bottom: 84px; right: 16px; }
 }
 
 /* ════════════════════════════════════════
@@ -551,7 +551,7 @@
    ════════════════════════════════════════ */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
   #floating-si-btn {
-    bottom: calc(24px + env(safe-area-inset-bottom));
+    bottom: calc(84px + env(safe-area-inset-bottom));
   }
   .pwa-banner {
     padding-bottom: calc(12px + env(safe-area-inset-bottom));
@@ -564,7 +564,7 @@
     height: calc(var(--navbar-h) + env(safe-area-inset-top));
   }
   #main-content {
-    padding-top: calc(var(--navbar-h) + 60px + env(safe-area-inset-top));
+    padding-top: calc(var(--navbar-h) + env(safe-area-inset-top)) !important;
   }
 }
 

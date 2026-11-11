@@ -348,7 +348,7 @@ async function runMediaTool(toolId) {
       const audioBlob = new Blob([audioData.buffer], { type: 'audio/mp3' });
       const audioDataUrl = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(audioBlob); });
       _mtSetProgress(60, 'Transcribing with AI…');
-      const resp = await fetch('/.netlify/functions/huggingface', {
+      const resp = await fetch(getFunctionEndpoint('huggingface'), {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ task: 'speech-to-text', audio: audioDataUrl }), signal: AbortSignal.timeout(60000),
       });

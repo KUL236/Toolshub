@@ -20,6 +20,7 @@ function getAllowedOrigin(requestOrigin) {
     process.env.DEPLOY_PRIME_URL,
     process.env.DEPLOY_URL,
     'https://softwaretoolss.netlify.app',
+    'https://softwaretoolss.com',
     'capacitor://localhost',
     'ionic://localhost',
     'http://localhost',

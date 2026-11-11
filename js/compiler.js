@@ -755,7 +755,7 @@ async function askGroqDebug(prompt) {
   msgs.scrollTop = msgs.scrollHeight;
 
   try {
-    const res = await fetch('/.netlify/functions/groq-chat', {
+    const res = await fetch(getFunctionEndpoint('groq-chat'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

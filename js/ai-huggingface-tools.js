@@ -106,7 +106,7 @@ async function runHFAiTool(toolKey, retryCount = 0) {
   resultArea.innerHTML = '<div style="display:flex;gap:6px;align-items:center;justify-content:center;padding:2rem"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
   try {
-    const response = await fetch('/.netlify/functions/huggingface', {
+    const response = await fetch(getFunctionEndpoint('huggingface'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -125,7 +125,20 @@ async function runHFAiTool(toolKey, retryCount = 0) {
       throw new Error(errData.error || `Service error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    const bodyText = await response.text();
+    if (!contentType.includes('application/json')) {
+      throw new Error('AI service returned an invalid response. Please try again.');
+    }
+    let data;
+    try {
+      data = JSON.parse(bodyText);
+    } catch {
+      throw new Error('AI service returned invalid JSON. Please try again.');
+    }
+    if (!data.image || typeof data.image !== 'string') {
+      throw new Error('AI service returned an invalid image response.');
+    }
     resultArea.innerHTML = `
       <img src="${data.image}" style="max-width:100%;border-radius:12px;border:1px solid var(--border);margin-bottom:1rem">
       <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">

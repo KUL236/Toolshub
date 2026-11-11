@@ -24,8 +24,21 @@ const MAX_AUDIO_BYTES = 20 * 1024 * 1024; // 20MB — Netlify Function payload c
 const HF_BASE_URL = 'https://router.huggingface.co/hf-inference/models';
 
 exports.handler = async (event) => {
+  const requestOrigin = event.headers?.origin;
+  const allowedOrigins = new Set([
+    process.env.URL,
+    'https://softwaretoolss.netlify.app',
+    'https://softwaretoolss.com',
+    'capacitor://localhost',
+    'ionic://localhost',
+    'http://localhost',
+    'https://localhost',
+  ].filter(Boolean));
+  const responseOrigin = requestOrigin && allowedOrigins.has(requestOrigin)
+    ? requestOrigin
+    : process.env.URL || 'https://softwaretoolss.netlify.app';
   const headers = {
-    'Access-Control-Allow-Origin': process.env.URL || '*',
+    'Access-Control-Allow-Origin': responseOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Content-Type': 'application/json',

@@ -80,7 +80,7 @@ async function _plpSearchOrLoad() {
 
   resultsEl.innerHTML = `<div class="info-box info-box-blue" style="margin-bottom:1rem">Searching…</div>`;
   try {
-    const resp = await fetch('/.netlify/functions/spotify-search?q=' + encodeURIComponent(query));
+    const resp = await fetch(getFunctionEndpoint('spotify-search') + '?q=' + encodeURIComponent(query));
     const data = await resp.json();
     if (!resp.ok) {
       if (data.error === 'not_configured') {

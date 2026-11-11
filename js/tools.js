@@ -316,7 +316,7 @@ async function runAITool(toolKey) {
   resultEl.innerHTML = '<div style="display:flex;gap:6px;align-items:center"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
   try {
     const prompt = config.prompt(input, lang);
-    const response = await fetch('/.netlify/functions/groq-chat', {
+    const response = await fetch(getFunctionEndpoint('groq-chat'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: prompt, model }),
@@ -326,7 +326,17 @@ async function runAITool(toolKey) {
       const errData = await response.json().catch(() => ({}));
       throw new Error(errData.error || `Service error: ${response.status}`);
     }
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    const bodyText = await response.text();
+    if (!contentType.includes('application/json')) {
+      throw new Error('AI service returned an invalid response. Please try again.');
+    }
+    let data;
+    try {
+      data = JSON.parse(bodyText);
+    } catch {
+      throw new Error('AI service returned invalid JSON. Please try again.');
+    }
     const text = data.reply || 'No response generated.';
     resultEl.textContent = text;
     if (window.supabaseClient && Auth.user) {
@@ -2390,7 +2400,7 @@ async function doOCR(f){
   try {
     // Convert to base64 to send to our secure proxy
     const base64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=()=>rej(new Error('File read failed'));r.readAsDataURL(f);});
-    const response=await fetch('/.netlify/functions/ocr',{
+    const response=await fetch(getFunctionEndpoint('ocr'),{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({fileBase64:base64,mimeType:f.type,language:'eng'}),
@@ -2419,7 +2429,7 @@ async function _runSecureOCR(file, language = 'eng') {
     r.onerror = () => rej(new Error('File read failed'));
     r.readAsDataURL(file);
   });
-  const response = await fetch('/.netlify/functions/ocr', {
+  const response = await fetch(getFunctionEndpoint('ocr'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ fileBase64: base64, mimeType: file.type, language }),
@@ -4812,7 +4822,7 @@ async function handleImageTranslator(file) {
     // Previously this called api.anthropic.com directly from the browser with no
     // auth header — that request could never succeed. Fixed to reuse the working,
     // already-authenticated Groq pipeline instead of adding a third AI provider.
-    const resp = await fetch('/.netlify/functions/groq-chat', {
+    const resp = await fetch(getFunctionEndpoint('groq-chat'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
